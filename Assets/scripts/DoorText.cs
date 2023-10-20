@@ -6,8 +6,8 @@ using TMPro;
 public class DoorText : MonoBehaviour
 {
     TextMeshPro text;
-    [SerializeField] string openText = "Abrir (E)";
-    [SerializeField] string closeText = "Fechar (E)";
+    [SerializeField] string openText = "";
+    [SerializeField] string closeText = "";
     private string currentText;
     private float initialZPos;
 
