@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8ad8d03c0ed154d9f8ac4546362d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openText: Abrir (E)
-  closeText: Fechar (E)
+  openText: Abrir (E)<br>Chutar (R)
+  closeText: Fechar (E)<br>Chutar (R)
 --- !u!1 &2255791280968261333
 GameObject:
   m_ObjectHideFlags: 0
