@@ -5,7 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - ground
+<<<<<<< HEAD
   - Flammable
+=======
+>>>>>>> c7edabf145038d748b50e0d00864ab318d1f576d
   layers:
   - Default
   - TransparentFX
@@ -13,7 +16,11 @@ TagManager:
   - ground
   - Water
   - UI
+<<<<<<< HEAD
   - Interactable
+=======
+  - 
+>>>>>>> c7edabf145038d748b50e0d00864ab318d1f576d
   - 
   - 
   - 
