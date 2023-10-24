@@ -19,8 +19,20 @@ public class GameOver : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //PlayerPrefs.SetString("DeathReason", reason);
-            SceneManager.LoadScene("MainGame");
+            Restart();
         }
     }
+
+    public void Restart()
+    {
+        //PlayerPrefs.SetString("DeathReason", reason);
+        SceneManager.LoadScene("MainGame");
+    }
+
+    public void Exit()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
+    
 }
