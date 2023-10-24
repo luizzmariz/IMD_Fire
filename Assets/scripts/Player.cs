@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
         // Sitting
         if (Input.GetKeyDown(KeyCode.F))
         {
-            GameOver("AAAAAAAAA");
             SitInChair(GetNearestInteractable("Chair"));
         }
 
