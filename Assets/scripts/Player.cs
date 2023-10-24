@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private MyUtils myUtils;
     private Animator anim;
     private Collider coll;
+    private SpawnController spwnControl;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
         myUtils = GetComponent<MyUtils>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider>();
+        spwnControl = GameObject.FindWithTag("SpawnController").gameObject.GetComponent<SpawnController>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             SitInChair(GetNearestInteractable("Chair"));
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            transform.position = spwnControl.NormalSpawn();
         }
     }
 
@@ -103,5 +110,12 @@ public class Player : MonoBehaviour
         LayerMask.GetMask("Interactable"));
 
         return myUtils.GetNearestInteractable(myUtils.ToGameObjectArray(hitColliders), filter);
+    }
+
+    // Game Restart
+    void GameOver(string reason)
+    {
+        PlayerPrefs.SetString("DeathReason", reason);
+        Application.LoadLevel("GameOver");
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - Flammable
+  - SpawnController
   layers:
   - Default
   - TransparentFX
