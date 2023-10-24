@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider>();
         spwnControl = GameObject.FindWithTag("SpawnController").gameObject.GetComponent<SpawnController>();
+
+        transform.position = spwnControl.NormalSpawn();
     }
 
     // Update is called once per frame
@@ -39,10 +41,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             GameOver("AAAAAAAAA");
-
             SitInChair(GetNearestInteractable("Chair"));
         }
 
+        // --DEBUG--
         if (Input.GetKeyDown(KeyCode.X))
         {
             transform.position = spwnControl.NormalSpawn();
