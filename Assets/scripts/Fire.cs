@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    public GameObject dummy;
+    private Transform FireArea;
+    private ParticleSystem.ShapeModule shape;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        FireArea = transform.Find("Area").transform;
+        shape = GetComponent<ParticleSystem>().shape;
     }
 
     // Update is called once per frame
@@ -17,16 +19,30 @@ public class Fire : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            SpreadTo(dummy);
+            Spread();
         }
+    }
+
+    void Spread()
+    {
+        shape.radius = 12f;
+        FireArea.localScale = new Vector3 (23f, FireArea.localScale.y, 23f);
     }
 
     void SpreadTo(GameObject victim)
     {
-        victim.AddComponent<Fire>();
-        CopyComponent(GetComponent<ParticleSystem>(), victim);
+        /*
+        if (victim.GetComponent<Fire>() == null)
+        {
+            victim.AddComponent<Fire>();
+            Instantiate(FireObj, victim.transform);
+        }
+        */
+
+        //CopyComponent(GetComponent<ParticleSystem>(), victim);
     }
 
+    /*
     // by user: Shaffe   *adapted
     void CopyComponent(Component original, GameObject destination)
     {
@@ -39,4 +55,5 @@ public class Fire : MonoBehaviour
             field.SetValue(copy, field.GetValue(original));
         }
     }
+    */
 }
