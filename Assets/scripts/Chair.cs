@@ -55,6 +55,7 @@ public class Chair : MonoBehaviour, I_Interactable
         textPrompt.Show(closeToPlayer && IsSittable, ang);
     }
 
+    // Applies a force to the object
     public void Kick(Vector3 dir, float strength = 1f)
     {
         float mag = 20f * strength;

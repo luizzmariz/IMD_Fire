@@ -64,6 +64,7 @@ public class Door : MonoBehaviour, I_Interactable
         }
     }
 
+    // Applies a force to the object
     public void Kick(Vector3 dir, float strength = 1f)
     {
         // Making the door fall on the ground as a physics object
