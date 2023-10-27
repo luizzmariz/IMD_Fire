@@ -4,30 +4,45 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    private Transform FireArea;
+    public float maxRadius = 12f;
+    public float load_spread = 2f;
+
     private ParticleSystem.ShapeModule shape;
+
+    private float radius = 1f;
+    private float r_spread = 0f;
+    private bool spreading = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        FireArea = transform.Find("Area").transform;
         shape = GetComponent<ParticleSystem>().shape;
+        radius = shape.radius;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (spreading)
         {
-            Spread();
+            spreading = (radius < maxRadius);
+
+            if (r_spread >= load_spread)
+            {
+                SetRadius(radius + 1f);
+                r_spread = 0;
+            }
+            r_spread += Time.deltaTime;
         }
     }
 
-    void Spread()
+    void SetRadius(float r)
     {
-        shape.radius = 12f;
-        FireArea.localScale = new Vector3 (23f, FireArea.localScale.y, 23f);
+        shape.radius = r;
+        radius = r;
     }
+
+    public float GetRadius() {return radius;}
 
     void SpreadTo(GameObject victim)
     {

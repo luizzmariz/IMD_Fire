@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 427652901075677326}
   - component: {fileID: 2223490408454193582}
   - component: {fileID: 5781063775992374103}
+  - component: {fileID: 2493266210705483715}
   m_Layer: 6
   m_Name: Chair
   m_TagString: Flammable
@@ -255,6 +256,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactDis: 2.7
   IsSittable: 1
+--- !u!114 &2493266210705483715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177303602692783894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d055eda46c8a474999036b3a67cf5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burned: 0
 --- !u!1 &3772985915413553971
 GameObject:
   m_ObjectHideFlags: 0
