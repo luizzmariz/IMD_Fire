@@ -22,22 +22,37 @@ public class Chair : MonoBehaviour, I_Interactable
     // Update is called once per frame
     void Update()
     {
-        // distance from the player to the chair
-        float dis = Vector3.Distance(player.position, chair.position);
+        float ang = 0f;
+        bool closeToPlayer = false;
 
-        // Angle to the player
-        Vector3 toPlayer = chair.position - player.position;
-        float angToPlayer = Vector3.Angle(Vector3.forward, Vector3.Normalize(toPlayer));
-        float side = -Vector3.Dot(Vector3.Cross(toPlayer, Vector3.forward).normalized, Vector3.up);
+        // Burned
+        bool burned = GetComponent<Flammable>().burned;
 
-        // IsSittable
-        float minSitAng = 45f;
-        float xAng = chair.eulerAngles.x;
-        float zAng = chair.eulerAngles.z;
-        IsSittable = xAng > -minSitAng && xAng < minSitAng &&
-                     zAng > -minSitAng && zAng < minSitAng;
+        if (!burned)
+        {
+            // distance from the player to the chair
+            float dis = Vector3.Distance(player.position, chair.position);
 
-        textPrompt.Show(dis <= interactDis && IsSittable, Mathf.Sign(side) * angToPlayer);
+            // Angle to the player
+            Vector3 toPlayer = chair.position - player.position;
+            float angToPlayer = Vector3.Angle(Vector3.forward, Vector3.Normalize(toPlayer));
+            float side = -Vector3.Dot(Vector3.Cross(toPlayer, Vector3.forward).normalized, Vector3.up);
+
+            ang = Mathf.Sign(side) * angToPlayer;
+            closeToPlayer = (dis <= interactDis);
+
+            // IsSittable
+            float minSitAng = 45f;
+            float xAng = chair.eulerAngles.x;
+            float zAng = chair.eulerAngles.z;
+            IsSittable = xAng > -minSitAng && xAng < minSitAng &&
+                        zAng > -minSitAng && zAng < minSitAng;
+        }
+        else {
+            IsSittable = false;
+        }
+
+        textPrompt.Show(closeToPlayer && IsSittable, ang);
     }
 
     public void Kick(Vector3 dir, float strength = 1f)
