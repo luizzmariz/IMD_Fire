@@ -556,6 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burned: 0
   load_burn: 5
+  FireObj: {fileID: 2381281789484397974, guid: dd4efd3371af0384e9ca4e54a7afc107, type: 3}
 --- !u!1001 &4615393043058999964
 PrefabInstance:
   m_ObjectHideFlags: 0

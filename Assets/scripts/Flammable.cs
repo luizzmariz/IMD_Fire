@@ -10,6 +10,9 @@ public class Flammable : MonoBehaviour
     private bool burning = false;
     private float r_burn = 0f;
 
+    [SerializeField] private GameObject FireObj;
+    private GameObject flame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class Flammable : MonoBehaviour
                 if (distanceToFire <= fireRadius*0.5f)
                 {
                     burning = true;
+                    CreateFlame();
                     break;
                 }
             }
@@ -51,9 +55,17 @@ public class Flammable : MonoBehaviour
         }
     }
 
+    void CreateFlame()
+    {
+        flame = Instantiate(FireObj, transform);
+    }
+
     void Burn()
     {
         burned = true;
+
+        // Putting out the flame
+        Destroy(flame);
 
         // Changing color to black
         Color burnedColor = new Color(0, 0, 0);

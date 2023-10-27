@@ -44,18 +44,18 @@ public class Fire : MonoBehaviour
 
     public float GetRadius() {return radius;}
 
+    /*
     void SpreadTo(GameObject victim)
     {
-        /*
         if (victim.GetComponent<Fire>() == null)
         {
             victim.AddComponent<Fire>();
             Instantiate(FireObj, victim.transform);
         }
-        */
 
         //CopyComponent(GetComponent<ParticleSystem>(), victim);
     }
+    */
 
     /*
     // by user: Shaffe   *adapted
