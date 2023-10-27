@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 1092801877254561340}
   - component: {fileID: 6587394676121347175}
   - component: {fileID: 4486863954712853588}
+  - component: {fileID: 3044237784942740436}
   m_Layer: 6
   m_Name: Door
   m_TagString: Flammable
@@ -541,6 +542,20 @@ MonoBehaviour:
   interactDis: 3
   open: 1
   broken: 0
+--- !u!114 &3044237784942740436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703229813301071087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d055eda46c8a474999036b3a67cf5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burned: 0
+  load_burn: 5
 --- !u!1001 &4615393043058999964
 PrefabInstance:
   m_ObjectHideFlags: 0
