@@ -8,7 +8,10 @@ public class Player : MonoBehaviour
     public float kickRange = 3f;
     public float kickStrength = 1f;
     public float sitRange = 2f;
+    public float load_burn = 1f;
 
+    private int Hp = 10;
+    private float r_burn = 0f;
     private bool sitDown = false;
     private Vector3 beforeSittingPos;
 
@@ -47,6 +50,19 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             transform.position = spwnControl.NormalSpawn();
+        }
+
+        // Taking damage from fire
+        if (CheckForFire())
+        {
+            if (r_burn >= load_burn)
+            {
+                Hp -= 1;
+                Debug.Log(Hp);
+                r_burn = 0;
+            }
+
+            r_burn += Time.deltaTime;
         }
     }
 
@@ -98,6 +114,24 @@ public class Player : MonoBehaviour
 
         Vector3 dir = (targetObj.transform.position - transform.position).normalized;
         targetObj.gameObject.GetComponent<I_Interactable>().Kick(dir, strength);
+    }
+
+    bool CheckForFire()
+    {
+        GameObject[] lista = GameObject.FindGameObjectsWithTag("FirePoint");
+
+        foreach(GameObject g in lista)
+        {
+            float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
+            float fireRadius = g.GetComponent<Fire>().GetRadius();
+
+            if (distanceToFire <= fireRadius*0.5f)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // General Utility Functions
