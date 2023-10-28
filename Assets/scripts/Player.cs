@@ -34,6 +34,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Dying
+        if (Hp <= 0)
+        {
+            GameOver("Fogo queima");
+        }
+
         // Kicking
         if (Input.GetKeyDown(KeyCode.R) && !sitDown)
         {
@@ -153,6 +159,7 @@ public class Player : MonoBehaviour
     // Game Restart
     void GameOver(string reason)
     {
+        Cursor.lockState = CursorLockMode.None;
         PlayerPrefs.SetString("DeathReason", reason);
         SceneManager.LoadScene("GameOver");
     }
