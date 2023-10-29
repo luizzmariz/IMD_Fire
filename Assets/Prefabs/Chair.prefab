@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96eb289496431540b70dd445f3da417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDis: 2.15
+  interactDis: 1.8
   promptText: Sentar (F)
   IsSittable: 1
 --- !u!114 &2493266210705483715
