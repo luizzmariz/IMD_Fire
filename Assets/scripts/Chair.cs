@@ -5,41 +5,32 @@ using UnityEngine;
 public class Chair : MonoBehaviour, I_Interactable
 {
     [SerializeField] float interactDis = 2.7f;
+    [SerializeField] string promptText = "Sentar (F)";
     public bool IsSittable = true;
 
     private Transform chair;
     private Transform player;
-    private ChairText textPrompt;
+    private ActionsPrompt actionsPrompt;
 
     // Start is called before the first frame update
     void Start()
     {
         chair = transform;
         player = GameObject.FindWithTag("Player").gameObject.transform;
-        textPrompt = transform.Find("TextPrompt").gameObject.GetComponent<ChairText>();
+        actionsPrompt = GameObject.FindWithTag("ActionsPrompt").gameObject.GetComponent<ActionsPrompt>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float ang = 0f;
-        bool closeToPlayer = false;
-
         // Burned
         bool burned = GetComponent<Flammable>().burned;
 
+        // 
         if (!burned)
         {
             // distance from the player to the chair
             float dis = Vector3.Distance(player.position, chair.position);
-
-            // Angle to the player
-            Vector3 toPlayer = chair.position - player.position;
-            float angToPlayer = Vector3.Angle(Vector3.forward, Vector3.Normalize(toPlayer));
-            float side = -Vector3.Dot(Vector3.Cross(toPlayer, Vector3.forward).normalized, Vector3.up);
-
-            ang = Mathf.Sign(side) * angToPlayer;
-            closeToPlayer = (dis <= interactDis);
 
             // IsSittable
             float minSitAng = 45f;
@@ -47,12 +38,15 @@ public class Chair : MonoBehaviour, I_Interactable
             float zAng = chair.eulerAngles.z;
             IsSittable = xAng > -minSitAng && xAng < minSitAng &&
                         zAng > -minSitAng && zAng < minSitAng;
+
+            if (IsSittable && dis <= interactDis)
+            {
+                actionsPrompt.Show(promptText);
+            }
         }
         else {
             IsSittable = false;
         }
-
-        textPrompt.Show(closeToPlayer && IsSittable, ang);
     }
 
     // Applies a force to the object
