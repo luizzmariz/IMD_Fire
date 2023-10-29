@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float sitRange = 2f;
     public float load_burn = 1f;
 
-    private int Hp = 10;
+    private int Hp = 3;
     private float r_burn = 0f;
     private bool sitDown = false;
     private Vector3 beforeSittingPos;
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
             if (r_burn >= load_burn)
             {
                 Hp -= 1;
-                Debug.Log(Hp);
+                Debug.Log("Hp: " + Hp);
                 r_burn = 0;
             }
 
