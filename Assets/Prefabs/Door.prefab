@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorSpd: 0.5
   interactDis: 3
-  open: 1
+  open: 0
   broken: 0
 --- !u!114 &3044237784942740436
 MonoBehaviour:

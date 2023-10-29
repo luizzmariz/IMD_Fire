@@ -6,7 +6,7 @@ public class Door : MonoBehaviour, I_Interactable
 {
     [SerializeField] float doorSpd = 0.5f;
     [SerializeField] float interactDis = 2.7f;
-    public bool open = true;
+    public bool open = false;
     public bool broken = false;
 
     private Transform knob;
@@ -42,7 +42,7 @@ public class Door : MonoBehaviour, I_Interactable
             float doorSide = Vector3.Dot(Vector3.Cross(toPlayer, toKnob).normalized, Vector3.up);
 
             textPrompt.Show(closeToKnob, doorSide < 0);
-
+            
             // Only opening the door when close to the knob
             if (closeToKnob && Input.GetKeyDown(KeyCode.E))
             {
