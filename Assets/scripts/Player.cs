@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
         foreach(GameObject g in lista)
         {
             float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
-            float fireRadius = g.GetComponent<Fire>().GetRadius();
+            float fireRadius = g.GetComponent<ParticleSpread>().GetRadius();
 
             if (distanceToFire <= fireRadius*0.5f)
             {
