@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         targetObj.gameObject.GetComponent<I_Interactable>().Kick(dir, strength);
     }
 
-    bool CheckForDanger(string danger, float dis_modifier = 0.5f)
+    bool CheckForDanger(string danger, float dis_modifier = 1f)
     {
         GameObject[] lista = GameObject.FindGameObjectsWithTag(danger);
 
@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
             float distanceToDanger = Vector3.Distance(g.transform.position, transform.position);
             float dangerRadius = g.GetComponent<ParticleSpread>().GetRadius();
 
-            if (distanceToDanger <= dangerRadius*dis_modifier)
+            if (distanceToDanger <= dangerRadius*g.transform.localScale.x*dis_modifier)
             {
                 return true;
             }
