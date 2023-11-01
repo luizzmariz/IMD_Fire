@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4865763610798288348}
   m_Layer: 0
   m_Name: Smoke
-  m_TagString: Untagged
+  m_TagString: Smoke
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1763592965822048623
 MonoBehaviour:
@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRadius: 12
-  load_spread: 2
+  load_spread: 1
   max_rate: 20
-  load_rate: 2
+  load_rate: 1
 --- !u!198 &7830524653972833121
 ParticleSystem:
   m_ObjectHideFlags: 0

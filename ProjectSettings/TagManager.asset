@@ -9,6 +9,7 @@ TagManager:
   - SpawnController
   - FirePoint
   - ActionsPrompt
+  - Smoke
   layers:
   - Default
   - TransparentFX

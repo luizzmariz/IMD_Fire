@@ -8,10 +8,11 @@ public class Player : MonoBehaviour
     public float kickRange = 3f;
     public float kickStrength = 1f;
     public float sitRange = 2f;
-    public float load_burn = 1f;
+    public float load_burn = 1f, load_asphyxiate = 2f;
 
     private int Hp = 3;
-    private float r_burn = 0f;
+    private string deathReason = "-";
+    private float r_burn = 0f, r_asphyxiate = 0f;
     private bool sitDown = false;
     private Vector3 beforeSittingPos;
 
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         // Dying
         if (Hp <= 0)
         {
-            GameOver("Fogo queima");
+            GameOver(deathReason);
         }
 
         // Kicking
@@ -59,16 +60,31 @@ public class Player : MonoBehaviour
         }
 
         // Taking damage from fire
-        if (CheckForFire())
+        if (CheckForDanger("FirePoint"))
         {
             if (r_burn >= load_burn)
             {
                 Hp -= 1;
-                Debug.Log("Hp: " + Hp);
+                Debug.Log("Fire, Hp: " + Hp);
+                deathReason = "Fogo queima";
                 r_burn = 0;
             }
 
             r_burn += Time.deltaTime;
+        }
+
+        // Taking damage from smoke
+        if (CheckForDanger("Smoke"))
+        {
+            if (r_asphyxiate >= load_asphyxiate)
+            {
+                Hp -= 1;
+                Debug.Log("Smoke, Hp: " + Hp);
+                deathReason = "Fumaça sufoca";
+                r_asphyxiate = 0;
+            }
+
+            r_asphyxiate += Time.deltaTime;
         }
     }
 
@@ -122,16 +138,16 @@ public class Player : MonoBehaviour
         targetObj.gameObject.GetComponent<I_Interactable>().Kick(dir, strength);
     }
 
-    bool CheckForFire()
+    bool CheckForDanger(string danger, float dis_modifier = 0.5f)
     {
-        GameObject[] lista = GameObject.FindGameObjectsWithTag("FirePoint");
+        GameObject[] lista = GameObject.FindGameObjectsWithTag(danger);
 
         foreach(GameObject g in lista)
         {
-            float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
-            float fireRadius = g.GetComponent<ParticleSpread>().GetRadius();
+            float distanceToDanger = Vector3.Distance(g.transform.position, transform.position);
+            float dangerRadius = g.GetComponent<ParticleSpread>().GetRadius();
 
-            if (distanceToFire <= fireRadius*0.5f)
+            if (distanceToDanger <= dangerRadius*dis_modifier)
             {
                 return true;
             }
