@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ParticleSpread : MonoBehaviour
 {
     public float maxRadius = 12f;
-    public float load_spread = 2f;
+    public float maxRate = 20f;
 
-    public float max_rate = 20f; // !!! rate will only increase while spreading (aka radius is increasing)
-    public float load_rate = 2f;
-
+    public float radiusIncreaseSpd = 1f; // 1 unit per second
+    public float rateIncreaseSpd = 1f;  //
 
     private ParticleSystem.ShapeModule shape;
     private ParticleSystem.EmissionModule emission;
 
     private float radius = 1f;
-    private float r_spread = 0f;
-    private bool spreading = true;
+    private float r_radius = 0f;
 
     private float rate = 10f;
     private float r_rate = 0f;
@@ -33,43 +32,40 @@ public class ParticleSpread : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spreading)
+
+        // function that increases a variable periodically
+        void increaseFloat(Func<float, bool> func, float currentValue, ref float counter, float maxValue, float spd)
         {
-            spreading = (radius < maxRadius);
-
-            // Increasing radius
-            if (r_spread >= load_spread)
+            if (currentValue < maxValue)
             {
-                SetRadius(radius + 1f);
-                r_spread = 0;
-            }
-            r_spread += Time.deltaTime;
-
-
-            // Increasing rate
-            if (rate < max_rate)
-            {
-                if (r_rate >= load_rate)
+                // Increasing radius
+                if (counter >= 1f)
                 {
-                    SetRate(rate + 1f);
-                    r_rate = 0;
+                    func(currentValue + 1f);
+                    counter = 0;
                 }
-                r_rate += Time.deltaTime;
+                counter += Time.deltaTime * spd;
             }
         }
+
+        increaseFloat(SetRadius, radius, ref r_radius, maxRadius, radiusIncreaseSpd);
+        increaseFloat(SetRate, rate, ref r_rate, maxRate, rateIncreaseSpd);
     }
 
-    void SetRadius(float r)
+    bool SetRadius(float r)
     {
         shape.radius = r;
         radius = r;
+
+        return false; //workaround, please ignore
     }
 
-    void SetRate(float r)
+    bool SetRate(float r)
     {
-
         emission.rateOverTime = r;
         rate = r;
+
+        return false; //workaround, please ignore
     }
 
     public float GetRadius() {return radius;}
