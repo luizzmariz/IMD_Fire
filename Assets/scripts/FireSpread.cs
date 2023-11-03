@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class FireSpread : MonoBehaviour
 {
-    public GameObject FireCenter;
+    private GameObject FireCenter;
     private Transform IMD_area;
     public float isolationDisBuffer = 0f;
     public float smokeOffsetAmount = 3f;
 
+    [HideInInspector] public bool hasSpread = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        FireCenter = Resources.Load<GameObject>("FirecenterSpawn");
         IMD_area = GameObject.FindWithTag("IMD_area").gameObject.transform;
 
         // Offsetting smoke center
@@ -23,6 +26,15 @@ public class FireSpread : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Wating for the fire raidus to reach max to create more firePoints
+        if (!hasSpread && GetComponent<ParticleSpread>().finishedSpreading)
+        {
+            hasSpread = true;
+            TriangleSpread(13f, Random.Range(0f, 360f));
+        }
+
+        // --- DEBUG ---
         if (Input.GetKeyDown(KeyCode.G))
         {
             TriangleSpread();
@@ -39,7 +51,7 @@ public class FireSpread : MonoBehaviour
     }
 
     // Created 3 new fire points in the shape of a triangle with the center as this object
-    public void TriangleSpread(float radius = 12f, float rot = 0f)
+    public void TriangleSpread(float radius = 13f, float rot = 0f)
     {
         for (int i = 0;i < 3;i ++)
         {

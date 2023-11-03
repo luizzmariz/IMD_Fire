@@ -20,6 +20,8 @@ public class ParticleSpread : MonoBehaviour
     private float rate = 10f;
     private float r_rate = 0f;
 
+    [HideInInspector] public bool finishedSpreading = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,8 @@ public class ParticleSpread : MonoBehaviour
 
         increaseFloat(SetRadius, radius, ref r_radius, maxRadius, radiusIncreaseSpd);
         increaseFloat(SetRate, rate, ref r_rate, maxRate, rateIncreaseSpd);
+
+        finishedSpreading = radius >= maxRadius;
     }
 
     bool SetRadius(float r)

@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5f92b87ee9c4f4faa4239a5db37ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireCenter: {fileID: 1220952208429348088, guid: eb2adb123e454ef4cbc41cda5ffe87b5, type: 3}
   isolationDisBuffer: 0
-  smokeOffsetMax: 3
+  smokeOffsetAmount: 3
+  hasSpread: 0
 --- !u!114 &5699403439525731664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +67,7 @@ MonoBehaviour:
   maxRate: 40
   radiusIncreaseSpd: 1
   rateIncreaseSpd: 1
+  finishedSpreading: 0
 --- !u!198 &4608283419146220878
 ParticleSystem:
   m_ObjectHideFlags: 0
