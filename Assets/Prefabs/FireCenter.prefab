@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9112249505553282299}
+  - component: {fileID: 9073359541494969666}
   - component: {fileID: 5699403439525731664}
   - component: {fileID: 4608283419146220878}
   - component: {fileID: 6466074763215523968}
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2894206409766113074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.89, y: 0.22, z: 32.32}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -35,6 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9073359541494969666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894206409766113074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5f92b87ee9c4f4faa4239a5db37ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireCenter: {fileID: 1220952208429348088, guid: eb2adb123e454ef4cbc41cda5ffe87b5, type: 3}
 --- !u!114 &5699403439525731664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,9 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRadius: 12
-  load_spread: 2
-  max_rate: 20
-  load_rate: 2
+  maxRate: 20
+  radiusIncreaseSpd: 1
+  rateIncreaseSpd: 1
 --- !u!198 &4608283419146220878
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -888,7 +902,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2

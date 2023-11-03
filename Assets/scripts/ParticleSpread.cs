@@ -23,10 +23,8 @@ public class ParticleSpread : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shape = GetComponent<ParticleSystem>().shape;
-        emission = GetComponent<ParticleSystem>().emission;
-        radius = shape.radius;
-        rate = emission.rateOverTime.constant;
+        shape = this.gameObject.GetComponent<ParticleSystem>().shape;
+        emission = this.gameObject.GetComponent<ParticleSystem>().emission;
     }
 
     // Update is called once per frame
