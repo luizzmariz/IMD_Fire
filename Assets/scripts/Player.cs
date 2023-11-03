@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float sitRange = 2f;
     public float load_burn = 1f, load_asphyxiate = 2f;
 
-    private int Hp = 3;
+    private int Hp = 20;
     private string deathReason = "-";
     private float r_burn = 0f, r_asphyxiate = 0f;
     private bool sitDown = false;
