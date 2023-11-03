@@ -7,11 +7,17 @@ public class FireSpread : MonoBehaviour
     public GameObject FireCenter;
     private Transform IMD_area;
     public float isolationDisBuffer = 0f;
+    public float smokeOffsetAmount = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
         IMD_area = GameObject.FindWithTag("IMD_area").gameObject.transform;
+
+        // Offsetting smoke center
+        Transform smoke = transform.Find("Smoke").gameObject.transform;
+        smoke.position += smokeOffsetAmount * 
+            (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)));
     }
 
     // Update is called once per frame

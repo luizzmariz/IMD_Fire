@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireCenter: {fileID: 1220952208429348088, guid: eb2adb123e454ef4cbc41cda5ffe87b5, type: 3}
+  isolationDisBuffer: 0
+  smokeOffsetMax: 3
 --- !u!114 &5699403439525731664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRadius: 12
-  maxRate: 20
+  maxRate: 40
   radiusIncreaseSpd: 1
   rateIncreaseSpd: 1
 --- !u!198 &4608283419146220878

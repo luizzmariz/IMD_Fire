@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e68b79d3be1eb34ab199614191dfc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRadius: 12
-  load_spread: 1
-  max_rate: 20
-  load_rate: 1
+  maxRadius: 24
+  maxRate: 20
+  radiusIncreaseSpd: 2
+  rateIncreaseSpd: 2
 --- !u!198 &7830524653972833121
 ParticleSystem:
   m_ObjectHideFlags: 0
