@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
+    [SerializeField] public Transform normalSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,8 @@ public class SpawnController : MonoBehaviour
 
     public Vector3 NormalSpawn()
     {
-        return transform.GetChild(0).transform.position;
+        //return transform.GetChild(0).transform.position;
+        return normalSpawn.position;
     }
 
     public Vector3 Spawn(int i)
