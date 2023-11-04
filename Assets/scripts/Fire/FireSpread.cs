@@ -31,7 +31,7 @@ public class FireSpread : MonoBehaviour
         if (!hasSpread && GetComponent<ParticleSpread>().finishedSpreading)
         {
             hasSpread = true;
-            TriangleSpread(13f, Random.Range(0f, 360f));
+            TriangleSpread(12.25f, Random.Range(0f, 360f));
         }
 
         // --- DEBUG ---
@@ -51,7 +51,7 @@ public class FireSpread : MonoBehaviour
     }
 
     // Created 3 new fire points in the shape of a triangle with the center as this object
-    public void TriangleSpread(float radius = 13f, float rot = 0f)
+    public void TriangleSpread(float radius = 12f, float rot = 0f)
     {
         for (int i = 0;i < 3;i ++)
         {
