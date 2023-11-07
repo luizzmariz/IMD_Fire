@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class TeleportMovement : MonoBehaviour
 {
-    Transform TeleportPoint;
+    GameObject TeleportPoint;
     float walking_dis = 1.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        TeleportPoint = transform.Find("TeleportPoint").transform;
+        TeleportPoint = transform.Find("TeleportPoint").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
         float y = transform.Find("Camera").transform.eulerAngles.y;
-        Vector3 dir = Quaternion.Euler(0, y, 0) * (Vector3.forward);
+        Vector3 dir = Quaternion.Euler(-45, y, 0) * (Vector3.forward);
 
         Vector3 newPos = transform.position + dir * walking_dis;
-        newPos = new Vector3 (newPos.x, transform.position.y, newPos.z);
+        newPos = new Vector3 (newPos.x, transform.position.y - TeleportPoint.GetComponent<TeleportPoint>().dif, newPos.z);
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -30,6 +30,6 @@ public class TeleportMovement : MonoBehaviour
             }
         }
 
-        TeleportPoint.position = new Vector3 (newPos.x, TeleportPoint.position.y, newPos.z);
+        TeleportPoint.transform.position = new Vector3 (newPos.x, TeleportPoint.transform.position.y, newPos.z);
     }
 }

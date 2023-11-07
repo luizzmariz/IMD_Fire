@@ -5,6 +5,7 @@ using UnityEngine;
 public class TeleportPoint : MonoBehaviour
 {
     private float startY;
+    public float dif;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,8 @@ public class TeleportPoint : MonoBehaviour
                 transform.localPosition = new Vector3(transform.localPosition.x, startY, transform.localPosition.z);
             }
         }
+
+        dif = startY - transform.localPosition.y;
     }
     
 }
