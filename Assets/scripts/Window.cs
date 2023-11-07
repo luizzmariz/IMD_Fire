@@ -8,6 +8,7 @@ public class Window : MonoBehaviour
     [SerializeField] float interactDis = 2.7f;
 
     private GameObject windowDoor;
+    private GameObject playerObj;
     private Transform player;
     private DoorText textPrompt;
 
@@ -16,7 +17,8 @@ public class Window : MonoBehaviour
     {
         windowDoor = transform.Find("Door").gameObject;
         textPrompt = transform.Find("TextPrompt").gameObject.GetComponent<DoorText>();
-        player = GameObject.FindWithTag("Player").gameObject.transform;
+        playerObj = GameObject.FindWithTag("Player").gameObject;
+        player = playerObj.transform;
     }
 
     // Update is called once per frame
@@ -35,7 +37,6 @@ public class Window : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            windowDoor.SetActive(!closed);
             Interact(!closed);
         }
     }
@@ -44,14 +45,37 @@ public class Window : MonoBehaviour
     void Interact(bool closed_)
     {
         closed = closed_;
-        //anim.SetBool("Open", open);
-        textPrompt.ChangePrompt(!closed);
+        windowDoor.SetActive(closed_);
+        textPrompt.ChangePrompt(!closed_);
 
-        /*
-        if (open)
+        // Backdraft
+        if (!closed)
         {
-            anim.Play("DoorOpen");
+            if (closeToAFire())
+            {
+                // Game Over
+                // pls add an explosion so it looks cool
+
+                playerObj.GetComponent<Player>().GameOver("Não abra janelas em um incêndio !!");
+            }
         }
-        */
+    }
+
+    private bool closeToAFire()
+    {
+        GameObject[] lista = GameObject.FindGameObjectsWithTag("FirePoint");
+
+        foreach(GameObject g in lista)
+        {
+            float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
+            float fireRadius = g.GetComponent<ParticleSpread>().GetRadius();
+
+            if (distanceToFire <= fireRadius*0.75f)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

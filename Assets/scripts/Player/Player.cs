@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
     }
 
     // Game Restart
-    void GameOver(string reason)
+    public void GameOver(string reason)
     {
         Cursor.lockState = CursorLockMode.None;
         PlayerPrefs.SetString("DeathReason", reason);
