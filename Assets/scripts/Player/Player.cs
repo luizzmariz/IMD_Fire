@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public float stamina = 100f;
     public float kickRange = 3f;
     public float kickStrength = 1f;
     public float sitRange = 2f;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private Collider coll;
     private SpawnController spwnControl;
+    [SerializeField] Stamina StaminaBar;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,9 @@ public class Player : MonoBehaviour
         // Kicking
         if (Input.GetKeyDown(KeyCode.R) && !sitDown)
         {
+            stamina -= 10f;
+            StaminaBar.updateEnergy(stamina);
+
             Kick(GetNearestInteractable(), kickStrength);
         }
 
