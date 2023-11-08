@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -58,14 +59,22 @@ public class Player : MonoBehaviour
         // Kicking
         if (Input.GetKeyDown(KeyCode.R) && !sitDown)
         {
+            try {
+                Kick(GetNearestInteractable(), kickStrength);
+            }
+            catch(Exception e)
+            {
+                Debug.Log("Nada para chutar :p");
+            }
+
+            // Losing stamina
             stamina -= 20f;
             StaminaBar.updateEnergy(stamina);
 
-            //var leg = Instantiate(Leg, transform.position, Quaternion.identity);
-            //leg.transform.eulerAngles = transform.Find("Camera").transform.eulerAngles;
-            //Debug.Log(leg.transform.position);
-
-            Kick(GetNearestInteractable(), kickStrength);
+            // Creating Leg
+            Vector3 cameraAng = transform.Find("Camera").transform.eulerAngles;
+            Vector3 ang = new Vector3(0, cameraAng.y - 90f, 0);
+            Instantiate(Leg, transform.position, Quaternion.Euler(ang)).transform.parent = transform;
         }
 
         // Sitting
