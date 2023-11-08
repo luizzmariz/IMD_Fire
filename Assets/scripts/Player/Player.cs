@@ -23,12 +23,13 @@ public class Player : MonoBehaviour
     private bool sitDown = false;
     private Vector3 beforeSittingPos;
 
+    [SerializeField] Stamina StaminaBar;
+    [SerializeField] GameObject Leg;
     private MyUtils myUtils;
     private Animator anim;
     private Collider coll;
     private SpawnController spwnControl;
-    [SerializeField] Stamina StaminaBar;
-    [SerializeField] GameObject Leg;
+    private GameObject myLeg;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
             }
             catch(Exception e)
             {
+                Exception e_ = e; // Workaround ro remove an annoying warning
                 Debug.Log("Nada para chutar :p");
             }
 
@@ -72,9 +74,8 @@ public class Player : MonoBehaviour
             StaminaBar.updateEnergy(stamina);
 
             // Creating Leg
-            Vector3 cameraAng = transform.Find("Camera").transform.eulerAngles;
-            Vector3 ang = new Vector3(0, cameraAng.y - 90f, 0);
-            Instantiate(Leg, transform.position, Quaternion.Euler(ang)).transform.parent = transform;
+            myLeg = Instantiate(Leg, transform.position, Quaternion.Euler(GetFront()));
+            myLeg.transform.parent = transform;
         }
 
         // Sitting
@@ -115,6 +116,13 @@ public class Player : MonoBehaviour
             }
 
             r_asphyxiate += Time.deltaTime;
+        }
+
+        // adjusting leg rotation
+        if (myLeg != null)
+        {
+            Vector3 ang = GetFront();
+            myLeg.transform.eulerAngles = new Vector3(0, ang.y, 0);
         }
     }
 
@@ -187,6 +195,12 @@ public class Player : MonoBehaviour
     }
 
     // General Utility Functions
+
+    Vector3 GetFront()
+    {
+        Vector3 cameraAng = transform.Find("Camera").transform.eulerAngles;
+        return new Vector3(0, cameraAng.y - 90f, 0);
+    }
 
     void UpdateParentPos()
     {
