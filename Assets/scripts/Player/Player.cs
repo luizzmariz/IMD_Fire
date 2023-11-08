@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public string fire_death = "Não chegue perto do fogo!";
     public string smoke_death = "Não chegue perto da fumaça!";
     public string window_death = "Não abra janelas em um incêndio!";
+    public string elevator_death = "Não entre no elevador!";
 
     private int Hp = 20;
     private string deathReason = "-";
