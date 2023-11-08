@@ -35,7 +35,7 @@ public class Window : MonoBehaviour
 
         textPrompt.Show(closeToWindow, windowSide > 0); 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (closeToWindow && Input.GetKeyDown(KeyCode.E))
         {
             Interact(!closed);
         }
