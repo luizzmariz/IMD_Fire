@@ -38,6 +38,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Dying
+
+        if (stamina < 0f)
+        {
+            GameOver("Não se canse tanto!");
+        }
+
         if (Hp <= 0)
         {
             GameOver(deathReason);
@@ -46,7 +52,7 @@ public class Player : MonoBehaviour
         // Kicking
         if (Input.GetKeyDown(KeyCode.R) && !sitDown)
         {
-            stamina -= 10f;
+            stamina -= 20f;
             StaminaBar.updateEnergy(stamina);
 
             Kick(GetNearestInteractable(), kickStrength);
