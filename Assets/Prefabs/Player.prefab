@@ -321,11 +321,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86812bc6b39ff444809f356094c9e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stamina: 100
   kickRange: 3
   kickStrength: 1
   sitRange: 2
   load_burn: 1
   load_asphyxiate: 2
+  stamina_death: "N\xE3o se canse tanto!"
+  fire_death: "N\xE3o chegue perto do fogo!"
+  smoke_death: "N\xE3o chegue perto da fuma\xE7a!"
+  window_death: "N\xE3o abra janelas em um inc\xEAndio!"
+  StaminaBar: {fileID: 0}
+  Leg: {fileID: 0}
 --- !u!114 &7423199142754300477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7604923984092585389}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: -1, z: 0}
+  m_LocalPosition: {x: -1, y: -0.943, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -488,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f1975f1d10a2345b796adaab75bc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 0
+  dif: 0
 --- !u!1 &9143325449470969158
 GameObject:
   m_ObjectHideFlags: 0
