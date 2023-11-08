@@ -11,7 +11,6 @@ public class Stamina : MonoBehaviour
     void Start()
     {
         initialxSc = transform.localScale.x;
-        Debug.Log(initialxSc);
         initialxPos = transform.localPosition.x;
     }
 

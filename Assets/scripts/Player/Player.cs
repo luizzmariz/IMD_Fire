@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private Collider coll;
     private SpawnController spwnControl;
     [SerializeField] Stamina StaminaBar;
+    [SerializeField] GameObject Leg;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,10 @@ public class Player : MonoBehaviour
         {
             stamina -= 20f;
             StaminaBar.updateEnergy(stamina);
+
+            //var leg = Instantiate(Leg, transform.position, Quaternion.identity);
+            //leg.transform.eulerAngles = transform.Find("Camera").transform.eulerAngles;
+            //Debug.Log(leg.transform.position);
 
             Kick(GetNearestInteractable(), kickStrength);
         }
