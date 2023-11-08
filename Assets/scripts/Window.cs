@@ -56,7 +56,8 @@ public class Window : MonoBehaviour
                 // Game Over
                 // pls add an explosion so it looks cool
 
-                playerObj.GetComponent<Player>().GameOver("Não abra janelas em um incêndio !!");
+                Player playerScript = playerObj.GetComponent<Player>(); 
+                playerScript.GameOver(playerScript.window_death);
             }
         }
     }

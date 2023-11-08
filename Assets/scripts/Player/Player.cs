@@ -11,6 +11,11 @@ public class Player : MonoBehaviour
     public float sitRange = 2f;
     public float load_burn = 1f, load_asphyxiate = 2f;
 
+    public string stamina_death = "Não se canse tanto!";
+    public string fire_death = "Não chegue perto do fogo!";
+    public string smoke_death = "Não chegue perto da fumaça!";
+    public string window_death = "Não abra janelas em um incêndio!";
+
     private int Hp = 20;
     private string deathReason = "-";
     private float r_burn = 0f, r_asphyxiate = 0f;
@@ -41,7 +46,7 @@ public class Player : MonoBehaviour
 
         if (stamina < 0f)
         {
-            GameOver("Não se canse tanto!");
+            GameOver(stamina_death);
         }
 
         if (Hp <= 0)
@@ -77,7 +82,7 @@ public class Player : MonoBehaviour
             {
                 Hp -= 1;
                 Debug.Log("Fire, Hp: " + Hp);
-                deathReason = "Fogo queima";
+                deathReason = fire_death;
                 r_burn = 0;
             }
 
@@ -91,7 +96,7 @@ public class Player : MonoBehaviour
             {
                 Hp -= 1;
                 Debug.Log("Smoke, Hp: " + Hp);
-                deathReason = "Fumaça sufoca";
+                deathReason = smoke_death;
                 r_asphyxiate = 0;
             }
 
