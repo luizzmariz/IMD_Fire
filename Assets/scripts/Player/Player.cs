@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         }
 
         // Kicking
-        if (Input.GetKeyDown(KeyCode.R) && !sitDown)
+        if (Input.GetKeyDown(KeyCode.R) && !sitDown && myLeg == null)
         {
             try {
                 Kick(GetNearestInteractable(), kickStrength);
