@@ -22,8 +22,7 @@ public class TeleportMovement : MonoBehaviour
         if (!settings.paused)
         {
             float y = transform.Find("Camera").transform.eulerAngles.y;
-            Vector3 dir = Quaternion.Euler(0, y, 0) * (Vector3.forward);
-            Vector3 dirCheck = Quaternion.Euler(-45, y, 0) * (Vector3.forward);
+            Vector3 dir = Quaternion.Euler(-45, y, 0) * (Vector3.forward);
 
             Vector3 newPos = transform.position + dir * walking_dis;
 
@@ -44,7 +43,7 @@ public class TeleportMovement : MonoBehaviour
             // Teleporting to new position
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (!Physics.Raycast(transform.position, dirCheck.normalized , walking_dis))
+                if (!Physics.Raycast(transform.position, dir.normalized , walking_dis))
                 {
                     transform.position = newPos;
                     GetComponent<Player>().updateStamina(-0.25f);
