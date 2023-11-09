@@ -36,6 +36,7 @@ public class Door : MonoBehaviour, I_Interactable
     // Update is called once per frame
     void Update()
     {
+        // Interactions
         if (!broken)
         {
             // distance from the player to the knob

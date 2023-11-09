@@ -35,4 +35,9 @@ public class Menu : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
+
+    public void audioVolume(float v)
+    {
+        PlayerPrefs.SetFloat("Volume", v);
+    }
 }

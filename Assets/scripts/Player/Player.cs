@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
         // --DEBUG--
         if (Input.GetKeyDown(KeyCode.X))
         {
-            transform.position = spwnControl.NormalSpawn();
+            //PlayerPrefs.SetFloat("Volume", 0.29f);
         }
 
         // Taking damage from fire
