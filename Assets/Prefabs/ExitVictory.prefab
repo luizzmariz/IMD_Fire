@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 445537372458197557}
   - component: {fileID: 1780030604366814178}
   - component: {fileID: 8506225638185187093}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ExitVictory
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
