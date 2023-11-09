@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public string window_death = "Não abra janelas em um incêndio!";
     public string elevator_death = "Não entre no elevador!";
 
+    public AudioClip mainMusic_audio;
+
     private int score = 1000;
     private int Hp = 20;
     private string deathReason = "-";
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     private Collider coll;
     private SpawnController spwnControl;
     private GameObject myLeg;
+    private AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,8 @@ public class Player : MonoBehaviour
         myUtils = GetComponent<MyUtils>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider>();
+        audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(mainMusic_audio);
         spwnControl = GameObject.FindWithTag("SpawnController").gameObject.GetComponent<SpawnController>();
 
         transform.position = spwnControl.NormalSpawn();
