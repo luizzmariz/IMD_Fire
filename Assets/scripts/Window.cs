@@ -71,7 +71,7 @@ public class Window : MonoBehaviour
             float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
             float fireRadius = g.GetComponent<ParticleSpread>().GetRadius();
 
-            if (distanceToFire <= fireRadius*0.75f)
+            if (distanceToFire <= fireRadius*1.5f)
             {
                 return true;
             }

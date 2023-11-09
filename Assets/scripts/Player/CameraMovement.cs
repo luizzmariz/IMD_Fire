@@ -54,6 +54,12 @@ public class CameraMovement : MonoBehaviour
             parentTransform.position.z + neckLen * Mathf.Cos(ang)
         );
 
+        parentTransform.eulerAngles = new Vector3 (
+            parentTransform.eulerAngles.x,
+            neck.y,
+            parentTransform.eulerAngles.z
+        );
+
     }
 
     void Move(Vector3 d)
