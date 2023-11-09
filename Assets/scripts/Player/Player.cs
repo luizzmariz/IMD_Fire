@@ -6,11 +6,11 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public float stamina = 100f;
     public float kickRange = 3f;
     public float kickStrength = 1f;
     public float sitRange = 2f;
     public float load_burn = 1f, load_asphyxiate = 2f;
+    public float regainStaminaDelay = 5f;
 
     public string stamina_death = "Não se canse tanto!";
     public string fire_death = "Não chegue perto do fogo!";
@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private float r_burn = 0f, r_asphyxiate = 0f;
     private bool sitDown = false;
     private Vector3 beforeSittingPos;
+    private float stamina = 100f;
+    private float lastReducedStamina = 0f;
 
     [SerializeField] Stamina StaminaBar;
     [SerializeField] GameObject Leg;
@@ -58,6 +60,16 @@ public class Player : MonoBehaviour
             GameOver(deathReason);
         }
 
+        //Regaining stamina
+        if (lastReducedStamina > 0)
+        {
+            lastReducedStamina -= Time.deltaTime;
+        }
+        else {
+            updateStamina(+3f); // +3 stamina 
+            lastReducedStamina = regainStaminaDelay;
+        }
+
         // Kicking
         if (Input.GetKeyDown(KeyCode.R) && !sitDown && myLeg == null)
         {
@@ -71,8 +83,7 @@ public class Player : MonoBehaviour
             }
 
             // Losing stamina
-            stamina -= 20f;
-            StaminaBar.updateEnergy(stamina);
+            updateStamina(-20f);
 
             // Creating Leg
             myLeg = Instantiate(Leg, transform.position, Quaternion.Euler(GetFront()));
@@ -201,6 +212,13 @@ public class Player : MonoBehaviour
     {
         Vector3 cameraAng = transform.Find("Camera").transform.eulerAngles;
         return new Vector3(0, cameraAng.y - 90f, 0);
+    }
+
+    public void updateStamina(float v)
+    {
+        if (v < 0) lastReducedStamina = regainStaminaDelay;
+        if (v < 0 || v + stamina <= 100f) stamina += v;
+        StaminaBar.updateEnergy(stamina);
     }
 
     void UpdateParentPos()

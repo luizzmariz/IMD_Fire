@@ -27,6 +27,7 @@ public class TeleportMovement : MonoBehaviour
             if (!Physics.Raycast(transform.position, dir.normalized , walking_dis))
             {
                 transform.position = newPos;
+                GetComponent<Player>().updateStamina(-1f);
             }
         }
 
