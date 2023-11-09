@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float neckHSpd = 3f;
     [SerializeField] private float neckVSpd = 3f;
     [SerializeField] private float neckLen = 0.532f;
-    private Vector2 neck = new Vector2(0, 0);
+    private Vector2 neck;
     private Transform parentTransform;
     private Rigidbody rb;
 
@@ -21,6 +21,7 @@ public class CameraMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         parentTransform = transform.parent.transform;
         rb = transform.parent.gameObject.GetComponent<Rigidbody>();
+        neck = new Vector2(transform.eulerAngles.x, transform.eulerAngles.y);
     }
 
     // Update is called once per frame
