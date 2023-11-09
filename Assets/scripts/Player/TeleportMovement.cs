@@ -22,21 +22,34 @@ public class TeleportMovement : MonoBehaviour
         if (!settings.paused)
         {
             float y = transform.Find("Camera").transform.eulerAngles.y;
-            Vector3 dir = Quaternion.Euler(-45, y, 0) * (Vector3.forward);
+            Vector3 dir = Quaternion.Euler(0, y, 0) * (Vector3.forward);
+            Vector3 dirCheck = Quaternion.Euler(-45, y, 0) * (Vector3.forward);
 
             Vector3 newPos = transform.position + dir * walking_dis;
-            newPos = new Vector3 (newPos.x, transform.position.y - TeleportPoint.GetComponent<TeleportPoint>().dif, newPos.z);
 
+            // Changing teleport point's position
+            TeleportPoint.transform.position = new Vector3 (
+                newPos.x,
+                TeleportPoint.transform.position.y,
+                newPos.z
+            );
+
+            // Getting a newPos based on the teleport point position
+            newPos = new Vector3 (
+                TeleportPoint.transform.position.x, 
+                transform.position.y - TeleportPoint.GetComponent<TeleportPoint>().dif/2f,
+                TeleportPoint.transform.position.z
+            );
+
+            // Teleporting to new position
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (!Physics.Raycast(transform.position, dir.normalized , walking_dis))
+                if (!Physics.Raycast(transform.position, dirCheck.normalized , walking_dis))
                 {
                     transform.position = newPos;
                     GetComponent<Player>().updateStamina(-0.25f);
                 }
             }
-
-            TeleportPoint.transform.position = new Vector3 (newPos.x, TeleportPoint.transform.position.y, newPos.z);
         }
     }
 }

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5f92b87ee9c4f4faa4239a5db37ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isolationDisBuffer: 0
+  isolationDisBuffer: -2
   smokeOffsetAmount: 3
   hasSpread: 0
 --- !u!114 &5699403439525731664
