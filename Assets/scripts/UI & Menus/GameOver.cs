@@ -31,7 +31,6 @@ public class GameOver : MonoBehaviour
 
     public void Exit()
     {
-        PlayerPrefs.SetInt("CurrentLevel", 0); //lazy workaround
         UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }

@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     private Collider coll;
     private SpawnController spwnControl;
     private GameObject myLeg;
-    private AudioSource audio;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +44,8 @@ public class Player : MonoBehaviour
         myUtils = GetComponent<MyUtils>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider>();
-        audio = GetComponent<AudioSource>();
-        audio.PlayOneShot(mainMusic_audio);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(mainMusic_audio);
         spwnControl = GameObject.FindWithTag("SpawnController").gameObject.GetComponent<SpawnController>();
 
         transform.position = spwnControl.NormalSpawn();
@@ -269,7 +269,7 @@ public class Player : MonoBehaviour
     public void GameVictory()
     {
         Cursor.lockState = CursorLockMode.None;
-        PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
+        Levels.currentLevel ++;
         PlayerPrefs.SetInt("Score", score);
         SceneManager.LoadScene("GameVictory");
     }

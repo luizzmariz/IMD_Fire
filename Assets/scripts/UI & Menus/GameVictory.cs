@@ -23,12 +23,11 @@ public class GameVictory : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(Levels.levels[PlayerPrefs.GetInt("CurrentLevel")]);
+        SceneManager.LoadScene(Levels.levels[Levels.currentLevel]);
     }
 
     public void Exit()
     {
-        PlayerPrefs.SetInt("CurrentLevel", 0); //lazy workaround
         UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
