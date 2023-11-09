@@ -9,18 +9,25 @@ public class Door : MonoBehaviour, I_Interactable
     public bool open = false;
     public bool broken = false;
 
+    public AudioClip doorOpen_audio;
+    public AudioClip doorClose_audio;
+
     private Transform knob;
     private Transform player;
     private Animator anim;
     private DoorText textPrompt;
     private Rigidbody rb;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+
         anim = GetComponent<Animator>();
         anim.speed = doorSpd;
+
         knob = transform.Find("Knob").gameObject.transform;
         player = GameObject.FindWithTag("Player").gameObject.transform;
         textPrompt = transform.Find("TextPrompt").gameObject.GetComponent<DoorText>();
@@ -60,7 +67,11 @@ public class Door : MonoBehaviour, I_Interactable
 
         if (open)
         {
+            audioSource.PlayOneShot(doorOpen_audio);
             anim.Play("DoorOpen");
+        }
+        else {
+            audioSource.PlayOneShot(doorClose_audio);
         }
     }
 
