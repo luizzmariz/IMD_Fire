@@ -12,6 +12,7 @@ TagManager:
   - Smoke
   - IMD_area
   - Stairs
+  - Settings
   layers:
   - Default
   - TransparentFX

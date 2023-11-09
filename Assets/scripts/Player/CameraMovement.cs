@@ -10,10 +10,11 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float neckHSpd = 3f;
     [SerializeField] private float neckVSpd = 3f;
     [SerializeField] private float neckLen = 0.532f;
+
     private Vector2 neck;
     private Transform parentTransform;
     private Rigidbody rb;
-
+    private Menu settings;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class CameraMovement : MonoBehaviour
         parentTransform = transform.parent.transform;
         rb = transform.parent.gameObject.GetComponent<Rigidbody>();
         neck = new Vector2(transform.eulerAngles.x, transform.eulerAngles.y);
+        settings =  GameObject.FindWithTag("Settings").gameObject.GetComponent<Menu>();
     }
 
     // Update is called once per frame
@@ -33,8 +35,10 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) {Move(Vector3.back);}
         if (Input.GetKey(KeyCode.D)) {Move(Vector3.right);}
         */
-
-        Rotate(new Vector2(-neckVSpd * Input.GetAxis("Mouse Y"), neckHSpd * Input.GetAxis("Mouse X")));
+        if (!settings.paused)
+        {
+            Rotate(new Vector2(-neckVSpd * Input.GetAxis("Mouse Y"), neckHSpd * Input.GetAxis("Mouse X")));
+        }
     }
 
     void Rotate(Vector2 r)

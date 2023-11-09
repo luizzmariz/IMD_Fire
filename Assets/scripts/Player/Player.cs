@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     private SpawnController spwnControl;
     private GameObject myLeg;
     private AudioSource audioSource;
+    private Menu settings;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(mainMusic_audio);
         spwnControl = GameObject.FindWithTag("SpawnController").gameObject.GetComponent<SpawnController>();
+        settings =  GameObject.FindWithTag("Settings").gameObject.GetComponent<Menu>();
 
         transform.position = spwnControl.NormalSpawn();
     }
@@ -116,6 +118,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             //PlayerPrefs.SetFloat("Volume", 0.29f);
+            settings.pauseGame();
         }
 
         // Taking damage from fire
