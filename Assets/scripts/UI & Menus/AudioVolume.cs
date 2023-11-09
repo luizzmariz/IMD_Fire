@@ -10,6 +10,7 @@ public class AudioVolume : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.velocityUpdateMode = AudioVelocityUpdateMode.Dynamic;
     }
 
     // Update is called once per frame

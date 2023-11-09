@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
     public GameObject MainMenuObj;
     public GameObject SettingsObj;
+    [SerializeField] public Slider volumeSlider;
 
     private GameObject canvas;
     public bool paused = false;
@@ -46,15 +48,17 @@ public class Menu : MonoBehaviour
 
     public void pauseGame()
     {
-        Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         canvas.SetActive(true);
         paused = true;
+
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume");
     }
 
     public void resumeGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         canvas.SetActive(false);
         Time.timeScale = 1f;
         paused = false;

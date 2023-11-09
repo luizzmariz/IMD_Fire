@@ -1736,7 +1736,7 @@ Transform:
   m_Children:
   - {fileID: 8348200154981267631}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6216519920218567483
 MonoBehaviour:
@@ -1752,6 +1752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenuObj: {fileID: 5578663102293535960}
   SettingsObj: {fileID: 8600144160766215358}
+  volumeSlider: {fileID: 7726882947170958524}
   paused: 0
 --- !u!1 &8151412103107170156
 GameObject:
