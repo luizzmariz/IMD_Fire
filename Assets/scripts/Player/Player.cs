@@ -18,9 +18,10 @@ public class Player : MonoBehaviour
     public string window_death = "Não abra janelas em um incêndio!";
     public string elevator_death = "Não entre no elevador!";
 
+    private int score = 1000;
     private int Hp = 20;
     private string deathReason = "-";
-    private float r_burn = 0f, r_asphyxiate = 0f;
+    private float r_burn = 0f, r_asphyxiate = 0f, r_score = 0f;
     private bool sitDown = false;
     private Vector3 beforeSittingPos;
     private float stamina = 100f;
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour
             GameOver(deathReason);
         }
 
-        //Regaining stamina
+        // Regaining stamina
         if (lastReducedStamina > 0)
         {
             lastReducedStamina -= Time.deltaTime;
@@ -68,6 +69,16 @@ public class Player : MonoBehaviour
         else {
             updateStamina(+3f); // +3 stamina 
             lastReducedStamina = regainStaminaDelay;
+        }
+
+        // Updating score
+        if (r_score > 0)
+        {
+            r_score -= Time.deltaTime;
+        }
+        else {
+            score -= 25; //-25 score per second
+            r_score = 1f;
         }
 
         // Kicking
@@ -242,11 +253,18 @@ public class Player : MonoBehaviour
         return myUtils.GetNearestInteractable(myUtils.ToGameObjectArray(hitColliders), filter);
     }
 
-    // Game Restart
+    // Meta
     public void GameOver(string reason)
     {
         Cursor.lockState = CursorLockMode.None;
         PlayerPrefs.SetString("DeathReason", reason);
         SceneManager.LoadScene("GameOver");
+    }
+
+    public void GameVictory()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        PlayerPrefs.SetInt("Score", score);
+        SceneManager.LoadScene("GameVictory");
     }
 }
