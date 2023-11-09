@@ -216,8 +216,15 @@ public class Player : MonoBehaviour
 
     public void updateStamina(float v)
     {
-        if (v < 0) lastReducedStamina = regainStaminaDelay;
-        if (v < 0 || v + stamina <= 100f) stamina += v;
+        if (v < 0)
+        {
+            lastReducedStamina = regainStaminaDelay;
+            stamina += v;
+        }
+        else { // adding stamina
+            float newStamina = stamina + v;
+            stamina = newStamina > 100f ? 100f : newStamina;
+        }
         StaminaBar.updateEnergy(stamina);
     }
 
