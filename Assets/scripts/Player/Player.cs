@@ -264,6 +264,7 @@ public class Player : MonoBehaviour
     public void GameVictory()
     {
         Cursor.lockState = CursorLockMode.None;
+        PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
         PlayerPrefs.SetInt("Score", score);
         SceneManager.LoadScene("GameVictory");
     }
