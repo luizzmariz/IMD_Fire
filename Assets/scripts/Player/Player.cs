@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public string window_death = "Não abra janelas em um incêndio!";
     public string elevator_death = "Não entre no elevador!";
     public string dontgoup_death = "Não suba as escadas em um incêndio!";
+    public string timeover_death = "Você demorou demais a sair!<br>Já tentou usar as saídas de emergência?";
 
     public AudioClip mainMusic_audio;
 
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     private float stamina = 100f;
     private float lastReducedStamina = 0f;
     private float startY = 0;
+    private float levelTime = 0f;
 
     [SerializeField] Stamina StaminaBar;
     [SerializeField] GameObject Leg;
@@ -71,10 +73,18 @@ public class Player : MonoBehaviour
             GameOver(deathReason);
         }
 
+        // Checking if the player is going up the stairs near a fire
         if (CheckForDanger("FirePoint", 2) && transform.position.y - startY > 2.5)
         {
             GameOver(dontgoup_death);
         }
+
+        // GameOver if the player takes to long in the level
+        if (levelTime > Levels.timeInLevels[Levels.currentLevel])
+        {
+            GameOver(timeover_death);
+        }
+        levelTime += Time.deltaTime;
 
         // Regaining stamina
         if (lastReducedStamina > 0)
@@ -92,7 +102,7 @@ public class Player : MonoBehaviour
             r_score -= Time.deltaTime;
         }
         else {
-            score -= 25; //-25 score per second
+            score -= 5; //-5 score per second
             r_score = 1f;
         }
 

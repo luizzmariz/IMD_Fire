@@ -9,14 +9,16 @@ public class Menu : MonoBehaviour
     public GameObject MainMenuObj;
     public GameObject SettingsObj;
     [SerializeField] public Slider volumeSlider;
+    public bool paused = false;
+    public int level = -1; // workaround, please ignore (im lazy sorry)
 
     private GameObject canvas;
-    public bool paused = false;
 
     // Start is called before the first frame update
     void Start()
     {
         canvas = transform.Find("Canvas").gameObject;
+        if (level >= 0) Levels.currentLevel = level;
     }
 
     // Update is called once per frame

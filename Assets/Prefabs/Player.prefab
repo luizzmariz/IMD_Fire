@@ -334,6 +334,9 @@ MonoBehaviour:
   smoke_death: "N\xE3o chegue perto da fuma\xE7a!"
   window_death: "N\xE3o abra janelas em um inc\xEAndio!"
   elevator_death: "N\xE3o entre no elevador!"
+  dontgoup_death: "N\xE3o suba as escadas em um inc\xEAndio!"
+  timeover_death: "Voc\xEA demorou demais a sair!<br>J\xE1 tentou usar as sa\xEDdas
+    de emerg\xEAncia?"
   mainMusic_audio: {fileID: 8300000, guid: 75d65b5d846231b4aa4d93604c52a822, type: 3}
   StaminaBar: {fileID: 0}
   Leg: {fileID: 0}

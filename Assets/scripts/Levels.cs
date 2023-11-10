@@ -10,4 +10,9 @@ public class Levels
         "MainGame",
         "Level1"
     };
+
+    public static float[] timeInLevels = {
+        60f*3f, // 3min
+        60f*0.1f // 1.5min
+    };
 }
