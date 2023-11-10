@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
             GameOver(deathReason);
         }
 
-        if (transform.position.y - startY > 2.5)
+        if (CheckForDanger("FirePoint", 2) && transform.position.y - startY > 2.5)
         {
             GameOver(dontgoup_death);
         }
