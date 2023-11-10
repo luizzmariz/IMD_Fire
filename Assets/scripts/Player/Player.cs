@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public string smoke_death = "Não chegue perto da fumaça!";
     public string window_death = "Não abra janelas em um incêndio!";
     public string elevator_death = "Não entre no elevador!";
+    public string dontgoup_death = "Não suba as escadas em um incêndio!";
 
     public AudioClip mainMusic_audio;
 
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     private Vector3 beforeSittingPos;
     private float stamina = 100f;
     private float lastReducedStamina = 0f;
+    private float startY = 0;
 
     [SerializeField] Stamina StaminaBar;
     [SerializeField] GameObject Leg;
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour
         settings =  GameObject.FindWithTag("Settings").gameObject.GetComponent<Menu>();
 
         transform.position = spwnControl.NormalSpawn();
+        startY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -66,6 +69,11 @@ public class Player : MonoBehaviour
         if (Hp <= 0)
         {
             GameOver(deathReason);
+        }
+
+        if (transform.position.y - startY > 2.5)
+        {
+            GameOver(dontgoup_death);
         }
 
         // Regaining stamina
