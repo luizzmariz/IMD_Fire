@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     public AudioClip mainMusic_audio;
 
     private int score = 1000;
-    private int Hp = 20;
+    private float Hp = 100;
     private string deathReason = "-";
     private float r_burn = 0f, r_asphyxiate = 0f, r_score = 0f;
     private bool sitDown = false;
@@ -33,7 +33,8 @@ public class Player : MonoBehaviour
     private float startY = 0;
     private float levelTime = 0f;
 
-    [SerializeField] Stamina StaminaBar;
+    [SerializeField] Healthbar StaminaBar;
+    [SerializeField] Healthbar HealthBar;
     [SerializeField] GameObject Leg;
     private MyUtils myUtils;
     private Animator anim;
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
             GameOver(stamina_death);
         }
 
-        if (Hp <= 0)
+        if (Hp <= 0f)
         {
             GameOver(deathReason);
         }
@@ -144,7 +145,7 @@ public class Player : MonoBehaviour
         {
             if (r_burn >= load_burn)
             {
-                Hp -= 1;
+                updateHealth(-5f);
                 Debug.Log("Fire, Hp: " + Hp);
                 deathReason = fire_death;
                 r_burn = 0;
@@ -158,7 +159,7 @@ public class Player : MonoBehaviour
         {
             if (r_asphyxiate >= load_asphyxiate)
             {
-                Hp -= 1;
+                updateHealth(-5f);
                 Debug.Log("Smoke, Hp: " + Hp);
                 deathReason = smoke_death;
                 r_asphyxiate = 0;
@@ -262,7 +263,13 @@ public class Player : MonoBehaviour
             float newStamina = stamina + v;
             stamina = newStamina > 100f ? 100f : newStamina;
         }
-        StaminaBar.updateEnergy(stamina);
+        StaminaBar.updateValue(stamina);
+    }
+
+    public void updateHealth(float v)
+    {
+        Hp += v;
+        HealthBar.updateValue(Hp);
     }
 
     void UpdateParentPos()

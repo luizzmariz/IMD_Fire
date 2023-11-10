@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stamina : MonoBehaviour
+public class Healthbar : MonoBehaviour
 {
-    private float maxEnergy = 100f;
+    private float maxValue = 100f;
     private float initialxSc;
     private float initialxPos;
 
@@ -14,19 +14,20 @@ public class Stamina : MonoBehaviour
         initialxPos = transform.localPosition.x;
     }
 
-    public void setMaxEnergy(float energy)
+    public void setMaxValue(float value)
     {
-        maxEnergy = energy;
+        maxValue = value;
     }
 
-    public void updateEnergy(float energy)
+    public void updateValue(float value)
     {
-        if (energy >= 0)
+        if (value >= 0)
         {
-            float xSc = (energy/maxEnergy)*(initialxSc);
+            float r = value/maxValue;
+            float xSc = r*(initialxSc);
             transform.localScale = new Vector2 (xSc, transform.localScale.y);
             transform.localPosition = new Vector2 (
-                initialxPos - (initialxSc/2)*(1 - energy/maxEnergy), transform.localPosition.y);
+                initialxPos - (initialxSc/2)*(1 - r), transform.localPosition.y);
         }
     }
 }
