@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         /*
         if (Input.GetKey(KeyCode.W)) {Move(Vector3.forward);}
@@ -54,12 +54,13 @@ public class CameraMovement : MonoBehaviour
             parentTransform.position.z + neckLen * Mathf.Cos(ang)
         );
 
+        /*
         parentTransform.eulerAngles = new Vector3 (
             parentTransform.eulerAngles.x,
             neck.y,
             parentTransform.eulerAngles.z
         );
-
+        */
     }
 
     void Move(Vector3 d)
