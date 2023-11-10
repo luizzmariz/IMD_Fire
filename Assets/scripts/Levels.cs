@@ -13,6 +13,6 @@ public class Levels
 
     public static float[] timeInLevels = {
         60f*3f, // 3min
-        60f*0.1f // 1.5min
+        60f*1.5f // 1.5min
     };
 }
