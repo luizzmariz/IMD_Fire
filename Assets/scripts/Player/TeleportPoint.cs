@@ -17,8 +17,9 @@ public class TeleportPoint : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
+        float d = 1.5f;
 
-        if (Physics.Raycast(transform.position + new Vector3(0, 2f, 0), Vector3.down, out hit, 3f))
+        if (Physics.Raycast(transform.position + new Vector3(0, d, 0), Vector3.down, out hit, d + 3f))
         {
             if (hit.collider.gameObject.tag == "Stairs")
             {
