@@ -6,6 +6,7 @@ public class TeleportPoint : MonoBehaviour
 {
     private float startY;
     public float dif;
+    public bool collidingWithInteractable;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,18 @@ public class TeleportPoint : MonoBehaviour
         }
 
         dif = startY - transform.localPosition.y;
+
+        // checking for collision with interactables
+
+        collidingWithInteractable = false;
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.1f);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            {
+                collidingWithInteractable = true;
+            }
+        }
     }
-    
 }

@@ -339,6 +339,7 @@ MonoBehaviour:
     de emerg\xEAncia?"
   mainMusic_audio: {fileID: 8300000, guid: 75d65b5d846231b4aa4d93604c52a822, type: 3}
   StaminaBar: {fileID: 0}
+  HealthBar: {fileID: 0}
   Leg: {fileID: 0}
 --- !u!114 &7423199142754300477
 MonoBehaviour:
