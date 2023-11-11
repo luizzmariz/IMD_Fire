@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
             }
 
             // Losing stamina
-            updateStamina(-20f);
+            updateStamina(-10f);
 
             // Creating Leg
             myLeg = Instantiate(Leg, transform.position, Quaternion.Euler(GetFront()));
@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
     {
         // TODO Play Animation
 
-        Vector3 dir = (targetObj.transform.position - transform.position).normalized;
+        Vector3 dir = Quaternion.Euler(20, 0, 0) * (targetObj.transform.position - transform.position).normalized;
         targetObj.gameObject.GetComponent<I_Interactable>().Kick(dir, strength);
     }
 
