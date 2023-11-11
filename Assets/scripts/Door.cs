@@ -8,6 +8,7 @@ public class Door : MonoBehaviour, I_Interactable
     [SerializeField] float interactDis = 2.7f;
     public bool open = false;
     public bool broken = false;
+    public bool stuck = false;
 
     public AudioClip doorOpen_audio;
     public AudioClip doorClose_audio;
@@ -18,6 +19,7 @@ public class Door : MonoBehaviour, I_Interactable
     private DoorText textPrompt;
     private Rigidbody rb;
     private AudioSource audioSource;
+    private ActionsPrompt actionsPrompt;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class Door : MonoBehaviour, I_Interactable
         knob = transform.Find("Knob").gameObject.transform;
         player = GameObject.FindWithTag("Player").gameObject.transform;
         textPrompt = transform.Find("TextPrompt").gameObject.GetComponent<DoorText>();
+        actionsPrompt = GameObject.FindWithTag("ActionsPrompt").gameObject.GetComponent<ActionsPrompt>();
     }
 
     // Update is called once per frame
@@ -54,7 +57,8 @@ public class Door : MonoBehaviour, I_Interactable
             // Only opening the door when close to the knob
             if (closeToKnob && Input.GetKeyDown(KeyCode.E))
             {
-                Interact(!open);
+                if (!stuck) Interact(!open);
+                else actionsPrompt.Show("A porta está emperrada!");
             }
         }
     }
