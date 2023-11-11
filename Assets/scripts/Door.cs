@@ -54,11 +54,23 @@ public class Door : MonoBehaviour, I_Interactable
 
             textPrompt.Show(closeToKnob, doorSide < 0);
             
-            // Only opening the door when close to the knob
-            if (closeToKnob && Input.GetKeyDown(KeyCode.E))
+            // Only interacting with the door when close to the knob
+            if (closeToKnob)
             {
-                if (!stuck) Interact(!open);
-                else actionsPrompt.Show("A porta está emperrada!");
+                // opening door
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (!stuck) Interact(!open);
+                    else actionsPrompt.Show("A porta está emperrada!");
+                }
+
+                /*
+                // Checking handle temperature
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    actionsPrompt.Show("A porta está quente!");
+                }
+                */
             }
         }
     }
