@@ -17,7 +17,10 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Restart();
+        }
     }
 
     public void Restart()
@@ -28,7 +31,7 @@ public class GameOver : MonoBehaviour
 
     public void Exit()
     {
-        //UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
     

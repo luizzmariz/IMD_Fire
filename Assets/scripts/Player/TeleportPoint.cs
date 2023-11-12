@@ -6,7 +6,6 @@ public class TeleportPoint : MonoBehaviour
 {
     private float startY;
     public float dif;
-    public bool collidingWithInteractable;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +17,8 @@ public class TeleportPoint : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        float d = 1.5f;
 
-        if (Physics.Raycast(transform.position + new Vector3(0, d, 0), Vector3.down, out hit, d + 3f))
+        if (Physics.Raycast(transform.position + new Vector3(0, 2f, 0), Vector3.down, out hit, 3f))
         {
             if (hit.collider.gameObject.tag == "Stairs")
             {
@@ -32,18 +30,6 @@ public class TeleportPoint : MonoBehaviour
         }
 
         dif = startY - transform.localPosition.y;
-
-        // checking for collision with interactables
-
-        collidingWithInteractable = false;
-
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.1f);
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
-            {
-                collidingWithInteractable = true;
-            }
-        }
     }
+    
 }
