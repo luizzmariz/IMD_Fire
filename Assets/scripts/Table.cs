@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Table : MonoBehaviour, I_Interactable
 {
-    [SerializeField] float interactDis = 2.7f;
-
     private Transform table;
     private Transform player;
 
