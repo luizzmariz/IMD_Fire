@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3819185187156057851}
   - component: {fileID: 6649200102283721092}
   - component: {fileID: 4813579558465382563}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Extintor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 1303690783596559688}
   - component: {fileID: 5043626553716909430}
   - component: {fileID: 211649139783207427}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Origem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5093,7 +5093,7 @@ GameObject:
   - component: {fileID: 9014224431172845187}
   - component: {fileID: 4911354870108612354}
   - component: {fileID: 2647504830952108527}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bico
   m_TagString: Untagged
   m_Icon: {fileID: 0}

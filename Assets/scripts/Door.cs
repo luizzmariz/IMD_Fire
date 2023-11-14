@@ -103,6 +103,7 @@ public class Door : MonoBehaviour, I_Interactable
             GetComponent<BoxCollider>().isTrigger = false;
             GetComponent<Rigidbody>().isKinematic = false;
             textPrompt.HidePrompt();
+            this.gameObject.layer = 2;
         }
 
         // Getting the side of the player in relation to the door
