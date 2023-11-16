@@ -33,7 +33,7 @@ public class ActionsPrompt : MonoBehaviour
         // Removing demand from prompts
         foreach(string s in prompts)
         {
-            demands[s] -= Time.deltaTime;
+            demands[s] -= Time.deltaTime * 0.75f;
         }
     }
 

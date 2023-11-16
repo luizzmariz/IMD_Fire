@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
     {
         if (chair.GetComponent<Chair>().IsSittable)
         {
-            Vector3 chairPos = chair.transform.position;
+            Vector3 chairPos = chair.transform.Find("SittingPosition").transform.position;
             anim.enabled = true;
 
             if (sitDown) // getting up
