@@ -5,9 +5,7 @@ using UnityEngine;
 public class Extintor : MonoBehaviour
 {
     public bool isBeingCarried = false;
-    private Camera PlayerCamera;
-    private Transform originalParent;
-    private Transform mao;
+    public bool plasticRemoved = false;
 
     public float carga = 20.0f;
     public float decremento = 5.0f;
@@ -15,8 +13,12 @@ public class Extintor : MonoBehaviour
     public bool canPickUp = true;
     public float maxDistance = 2.0f; // Distância máxima para pegar o objeto
 
+    private Camera PlayerCamera;
+    private Transform originalParent;
+    private Transform mao;
     private ActionsPrompt actionsPrompt;
-    [SerializeField] string promptText = "Pegar (Q)";
+    [SerializeField] string promptTextGrab = "Pegar (Q)";
+    [SerializeField] string promptTextRemovePlastic = "Tirar o lacro (A)";
 
     private GameObject origemParticulas; // Objeto que contém as partículas
     private ParticleSystem extintorParticles; // Referência para o sistema de partículas
@@ -42,7 +44,7 @@ public class Extintor : MonoBehaviour
     {
         if (isBeingCarried)
         {
-            if (Input.GetMouseButton(0) && carga > 0) // Botão esquerdo do mouse está pressionado
+            if (plasticRemoved && Input.GetMouseButton(0) && carga > 0) // Botão esquerdo do mouse está pressionado
             {
                 //extintorParticles.Play(); // Inicia as partículas quando o botão do mouse é pressionado
                 var em = extintorParticles.emission;
@@ -71,7 +73,7 @@ public class Extintor : MonoBehaviour
                 canPickUp = true;
                 transform.parent = originalParent;
                 GetComponent<Rigidbody>().isKinematic = false;
-                 GetComponent<Collider>().enabled = true;
+                GetComponent<Collider>().enabled = true;
                 isBeingCarried = false;
             }
             else
@@ -96,7 +98,7 @@ public class Extintor : MonoBehaviour
 
             if (canPickUp && distanceToPlayer <= maxDistance)
             {
-                actionsPrompt.Show(promptText);
+                actionsPrompt.Show(promptTextGrab); // Mostrando o prompt de pegar o objeto
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     // Pegue o objeto quando o jogador pressiona "Q" e está dentro da distância máxima.
@@ -112,6 +114,15 @@ public class Extintor : MonoBehaviour
                     GetComponent<Rigidbody>().isKinematic = true;
                     GetComponent<Collider>().enabled = false;
                 }
+            }
+        }
+
+        // Removendo o plástico / lacro
+        if (wasPickedUp && !plasticRemoved) {
+            actionsPrompt.Show(promptTextRemovePlastic); // Mostrando o prompt de tirar o plástico
+            if (Input.GetKeyDown(KeyCode.A)) {
+                transform.Find("Plastico").gameObject.SetActive(false);
+                plasticRemoved = true;
             }
         }
     }
