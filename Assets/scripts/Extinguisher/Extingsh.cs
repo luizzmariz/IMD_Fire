@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Extingsh : MonoBehaviour
 {
+    public float strength = 3f;
+
     private ParticleSystem extingshParticles;
 
     void Start()
@@ -29,9 +31,9 @@ public class Extingsh : MonoBehaviour
             float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
             float fireRadius = pSpread.GetRadius();
 
-            if (distanceToFire <= 3f + fireRadius * g.transform.localScale.x * 1.5f)
+            if (distanceToFire <= 3f + fireRadius * g.transform.localScale.x * 1.75f)
             {
-                pSpread.SetRadius(fireRadius - Time.deltaTime * 2f);
+                pSpread.SetRadius(fireRadius - Time.deltaTime * strength);
             }
         }
     }
