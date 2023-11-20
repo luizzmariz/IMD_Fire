@@ -33,7 +33,7 @@ public class ActionsPrompt : MonoBehaviour
         // Removing demand from prompts
         foreach(string s in prompts)
         {
-            demands[s] -= Time.deltaTime;
+            demands[s] -= Time.deltaTime * 0.5f;
         }
     }
 
@@ -63,6 +63,8 @@ public class ActionsPrompt : MonoBehaviour
     // Normalizes/Adapts text to be shown as a vertical list on the screen
     void alterText()
     {
+        prompts.Sort();
+
         string final_text = "";
 
         foreach (string s in prompts)

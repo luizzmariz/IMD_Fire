@@ -33,6 +33,10 @@ public class ParticleSpread : MonoBehaviour
     void Update()
     {
 
+        if (radius < 0.1f) {
+            Destroy(this.gameObject);
+        }
+
         // function that increases a variable periodically
         void increaseFloat(Func<float, bool> func, float currentValue, ref float counter, float maxValue, float spd)
         {
@@ -54,7 +58,7 @@ public class ParticleSpread : MonoBehaviour
         finishedSpreading = radius >= maxRadius;
     }
 
-    bool SetRadius(float r)
+    public bool SetRadius(float r)
     {
         shape.radius = r;
         radius = r;
@@ -62,7 +66,7 @@ public class ParticleSpread : MonoBehaviour
         return false; //workaround, please ignore
     }
 
-    bool SetRate(float r)
+    public bool SetRate(float r)
     {
         emission.rateOverTime = r;
         rate = r;
