@@ -8,6 +8,8 @@ public class ActionsPrompt : MonoBehaviour
     private TextMeshProUGUI textDisplay;
     private ArrayList prompts;
     private Dictionary<string, float> demands;
+    private float updateDisplayFreq = 0.25f; // each 0.25f seconds
+    private float r_updateDisplayFreq = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +23,26 @@ public class ActionsPrompt : MonoBehaviour
     void Update()
     {
         // Removes elements from 'prompts' after they run out of demand
-        if (prompts.Count > 0)
+        for (int i = 0; i < prompts.Count; i ++)
         {
-            if (demands[(string) prompts[0]] < Time.deltaTime)
+            if (demands[(string) prompts[i]] < Time.deltaTime)
             {
-                prompts.RemoveAt(0);
+                prompts.RemoveAt(i);
+                break;
             }
-            alterText();
         }
 
+        // Updating display
+        if (r_updateDisplayFreq > updateDisplayFreq) {
+            alterText();
+            r_updateDisplayFreq = 0f;
+        }
+        r_updateDisplayFreq += Time.deltaTime;
+
         // Removing demand from prompts
-        foreach(string s in prompts)
+        foreach(string s in prompts) 
         {
-            demands[s] -= Time.deltaTime * 0.5f;
+            demands[s] -= Time.deltaTime;
         }
     }
 

@@ -180,7 +180,8 @@ public class Player : MonoBehaviour
     // Toggles between sitting and getting up a chair
     void SitInChair(GameObject chair)
     {
-        if (chair.GetComponent<Chair>().IsSittable)
+        Chair chairScript = chair.GetComponent<Chair>();
+        if (chairScript.IsSittable)
         {
             Vector3 chairPos = chair.transform.Find("SittingPosition").transform.position;
             anim.enabled = true;
@@ -203,6 +204,7 @@ public class Player : MonoBehaviour
             }
 
             sitDown = !sitDown;
+            chairScript.hasPlayer = sitDown;
         }
     }
 
@@ -284,6 +286,10 @@ public class Player : MonoBehaviour
         LayerMask.GetMask("Interactable"));
 
         return myUtils.GetNearestInteractable(myUtils.ToGameObjectArray(hitColliders), filter);
+    }
+
+    public bool isSatDown() {
+        return sitDown;
     }
 
     // Meta

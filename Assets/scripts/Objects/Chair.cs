@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Chair : MonoBehaviour, I_Interactable
 {
     [SerializeField] float interactDis = 2.7f;
-    [SerializeField] string promptText = "Sentar (F)";
+    [SerializeField] string promptTextSit = "Sentar (F)";
+    [SerializeField] string promptTextGetUp = "Levantar (F)";
     public bool IsSittable = true;
+    [HideInInspector] public bool hasPlayer = false;
 
     private Transform chair;
     private Transform player;
+    private Player playerScript;
     private ActionsPrompt actionsPrompt;
 
     // Start is called before the first frame update
     void Start()
     {
         chair = transform;
-        player = GameObject.FindWithTag("Player").gameObject.transform;
-        actionsPrompt = GameObject.FindWithTag("ActionsPrompt").gameObject.GetComponent<ActionsPrompt>();
+        actionsPrompt = GameObject.FindWithTag("ActionsPrompt").GetComponent<ActionsPrompt>();
+
+        var player_ = GameObject.FindWithTag("Player");
+        player = player_.transform;
+        playerScript = player_.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -43,9 +45,9 @@ public class Chair : MonoBehaviour, I_Interactable
             IsSittable = xAng > -minSitAng && xAng < minSitAng &&
                         zAng > -minSitAng && zAng < minSitAng;
 
-            if (IsSittable && dis <= interactDis)
+            if (IsSittable && dis <= interactDis && (hasPlayer || !playerScript.isSatDown()))
             {
-                actionsPrompt.Show(promptText);
+                actionsPrompt.Show(playerScript.isSatDown() ? promptTextGetUp : promptTextSit);
             }
         }
         else {
