@@ -33,7 +33,7 @@ public class Window : MonoBehaviour
 
         float windowSide = Vector3.Dot(Vector3.Cross(toPlayer, Vector3.forward).normalized, Vector3.up);
 
-        textPrompt.Show(closeToWindow, windowSide > 0); 
+        textPrompt.Show(closeToWindow, windowSide > 0);
 
         if (closeToWindow && Input.GetKeyDown(KeyCode.E))
         {

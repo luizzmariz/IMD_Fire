@@ -28,6 +28,7 @@ public class GameVictory : MonoBehaviour
 
     public void NextLevel()
     {
+        Levels.currentLevel ++;
         SceneManager.LoadScene(Levels.levels[Levels.currentLevel]);
     }
 

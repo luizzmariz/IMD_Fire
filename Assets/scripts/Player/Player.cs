@@ -303,7 +303,6 @@ public class Player : MonoBehaviour
     public void GameVictory()
     {
         Cursor.lockState = CursorLockMode.None;
-        Levels.currentLevel ++;
         PlayerPrefs.SetInt("Score", score);
         SceneManager.LoadScene("GameVictory");
     }
