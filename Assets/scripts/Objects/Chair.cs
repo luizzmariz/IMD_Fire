@@ -15,6 +15,9 @@ public class Chair : MonoBehaviour, I_Interactable
     private Player playerScript;
     private ActionsPrompt actionsPrompt;
 
+    private float calc_freq = 0.5f;
+    private float r_freq = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,8 @@ public class Chair : MonoBehaviour, I_Interactable
         var player_ = GameObject.FindWithTag("Player");
         player = player_.transform;
         playerScript = player_.GetComponent<Player>();
+
+        r_freq = Random.Range(0f, calc_freq);
     }
 
     // Update is called once per frame
@@ -35,20 +40,31 @@ public class Chair : MonoBehaviour, I_Interactable
         // 
         if (!burned)
         {
-            // distance from the player to the chair
-            float dis = Vector3.Distance(player.position, chair.position);
+            float dis = interactDis + 1f; // aka player is far enough, so you dont need to make calculations every frame
 
-            // IsSittable
-            float minSitAng = 45f;
-            float xAng = chair.eulerAngles.x;
-            float zAng = chair.eulerAngles.z;
-            IsSittable = xAng > -minSitAng && xAng < minSitAng &&
-                        zAng > -minSitAng && zAng < minSitAng;
-
-            if (IsSittable && dis <= interactDis && (hasPlayer || !playerScript.isSatDown()))
+            if (r_freq >= calc_freq) // Reducing calculations per frame
             {
-                actionsPrompt.Show(playerScript.isSatDown() ? promptTextGetUp : promptTextSit);
+                // distance from the player to the chair
+                dis = Vector3.Distance(player.position, chair.position);
+
+                // IsSittable
+                float minSitAng = 45f;
+                float xAng = chair.eulerAngles.x;
+                float zAng = chair.eulerAngles.z;
+                IsSittable = xAng > -minSitAng && xAng < minSitAng &&
+                            zAng > -minSitAng && zAng < minSitAng;
+
+                if (IsSittable && dis <= interactDis && (hasPlayer || !playerScript.isSatDown()))
+                {
+                    actionsPrompt.Show(playerScript.isSatDown() ? promptTextGetUp : promptTextSit);
+                }
+
+                r_freq = 0f;
             }
+
+            // If player is close enough, make calculations everyframe
+            if (dis <= interactDis) r_freq = calc_freq;
+            else r_freq += Time.deltaTime;
         }
         else {
             IsSittable = false;
