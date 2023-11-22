@@ -13,10 +13,13 @@ public class Flammable : MonoBehaviour
     [SerializeField] private GameObject FireObj;
     private GameObject flame;
 
+    private float calc_freq = 3f;
+    private float r_freq = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        r_freq = Random.Range(0f, calc_freq);
     }
 
     // Update is called once per frame
@@ -24,22 +27,30 @@ public class Flammable : MonoBehaviour
     {
         if (!burned && !burning)
         {
-            // Checking if the object is in range to be burned;
 
-            GameObject[] lista = GameObject.FindGameObjectsWithTag("FirePoint");
-
-            foreach(GameObject g in lista)
+            if (r_freq >= calc_freq)
             {
-                float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
-                float fireRadius = g.GetComponent<ParticleSpread>().GetRadius();
+                // Checking if the object is in range to be burned;
 
-                if (distanceToFire <= fireRadius*0.5f)
+                GameObject[] lista = GameObject.FindGameObjectsWithTag("FirePoint");
+
+                foreach(GameObject g in lista)
                 {
-                    burning = true;
-                    CreateFlame();
-                    break;
+                    float distanceToFire = Vector3.Distance(g.transform.position, transform.position);
+                    float fireRadius = g.GetComponent<ParticleSpread>().GetRadius();
+
+                    if (distanceToFire <= fireRadius*0.5f)
+                    {
+                        burning = true;
+                        CreateFlame();
+                        break;
+                    }
                 }
+                
+                r_freq = 0f;
             }
+
+            r_freq += Time.deltaTime;
         }
 
         if (burning)
