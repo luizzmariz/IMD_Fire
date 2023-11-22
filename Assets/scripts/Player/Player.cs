@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
             }
 
             // Losing stamina
-            updateStamina(-10f);
+            updateStamina(-3f);
 
             // Creating Leg
             myLeg = Instantiate(Leg, transform.position, Quaternion.Euler(GetFront()));

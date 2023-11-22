@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 813597010049207442}
   - component: {fileID: 6927255065288584060}
   - component: {fileID: 4885984569331657955}
-  - component: {fileID: 6716363139082995361}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -198,29 +197,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6716363139082995361
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3119226548148926145}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3912726009526994970
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86812bc6b39ff444809f356094c9e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invicible: 0
   kickRange: 3
   kickStrength: 1
   sitRange: 2
