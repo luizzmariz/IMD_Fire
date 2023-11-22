@@ -17,7 +17,7 @@ public class Table : MonoBehaviour, I_Interactable
     // Update is called once per frame
     void Update()
     {
-
+    
     }
 
     // Applies a force to the object

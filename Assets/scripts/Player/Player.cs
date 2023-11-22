@@ -6,6 +6,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    public bool invicible = false;
     public float kickRange = 3f;
     public float kickStrength = 1f;
     public float sitRange = 2f;
@@ -295,9 +296,11 @@ public class Player : MonoBehaviour
     // Meta
     public void GameOver(string reason)
     {
-        Cursor.lockState = CursorLockMode.None;
-        PlayerPrefs.SetString("DeathReason", reason);
-        SceneManager.LoadScene("GameOver");
+        if (!invicible) {
+            Cursor.lockState = CursorLockMode.None;
+            PlayerPrefs.SetString("DeathReason", reason);
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     public void GameVictory()

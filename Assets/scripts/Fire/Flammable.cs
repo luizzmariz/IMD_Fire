@@ -78,14 +78,24 @@ public class Flammable : MonoBehaviour
         // Putting out the flame
         Destroy(flame);
 
-        // Changing color to black
-        Color burnedColor = new Color(0, 0, 0);
+        // Changing the color of the whole object (and its children)
+        void turnBurntColor(GameObject obj) {
 
-        GetComponent<Renderer>().material.color = burnedColor;
+            Color burnedColor = new Color(0, 0, 0);
 
-        for (int i = 0;i < transform.childCount;i ++)
-        {
-            transform.GetChild(i).GetComponent<Renderer>().material.color = burnedColor;
+            Renderer ren = obj.GetComponent<Renderer>();
+            
+            if (ren != null) {
+                ren.material.color = burnedColor;
+            }
+
+            for (int i = 0;i < obj.transform.childCount;i ++)
+            {
+                turnBurntColor(obj.transform.GetChild(i).gameObject);
+            }
+
         }
+
+        turnBurntColor(this.gameObject);
     }
 }

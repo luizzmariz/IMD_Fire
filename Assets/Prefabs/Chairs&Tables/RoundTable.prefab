@@ -116,6 +116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2559101505837690403}
+  - component: {fileID: 8161868445940318126}
   m_Layer: 0
   m_Name: RoundTable
   m_TagString: Untagged
@@ -140,8 +141,23 @@ Transform:
   - {fileID: 1484536920243237262}
   - {fileID: 8387039829264742483}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8161868445940318126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512158790218135986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d055eda46c8a474999036b3a67cf5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burned: 0
+  load_burn: 5
+  FireObj: {fileID: 2381281789484397974, guid: dd4efd3371af0384e9ca4e54a7afc107, type: 3}
 --- !u!1 &3794585544608170023
 GameObject:
   m_ObjectHideFlags: 0
