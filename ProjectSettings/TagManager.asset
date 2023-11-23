@@ -10,6 +10,9 @@ TagManager:
   - FirePoint
   - ActionsPrompt
   - Smoke
+  - IMD_area
+  - Stairs
+  - Settings
   layers:
   - Default
   - TransparentFX
