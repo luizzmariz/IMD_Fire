@@ -22,8 +22,7 @@ public class GameOver : MonoBehaviour
 
     public void Restart()
     {
-        //PlayerPrefs.SetString("DeathReason", reason);
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene(Levels.levels[Levels.currentLevel]);
     }
 
     public void Exit()
