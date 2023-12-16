@@ -44,7 +44,7 @@ public class CameraMovement : MonoBehaviour
     void Rotate(Vector2 r)
     {
         neck += r;
-        transform.eulerAngles = new Vector3(neck.x, neck.y, 0);
+        transform.eulerAngles = new Vector3(Mathf.Clamp(neck.x, -90f, 90f) , neck.y, 0);
 
         float ang = Mathf.Deg2Rad * (neck.y + 0);
 
