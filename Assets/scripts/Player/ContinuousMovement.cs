@@ -19,7 +19,7 @@ public class ContinuousMovement : MonoBehaviour
     {
         Transform cam = transform.Find("Camera").transform;
 
-        Vector3 front = new Vector3 (cam.forward.x, 0, cam.forward.z);
+        Vector3 front = (new Vector3 (cam.forward.x, 0, cam.forward.z)).normalized;
         Vector3 right = Quaternion.Euler(new Vector3(0,90,0)) * front;
 
         if (Input.GetKey(KeyCode.W))
