@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
 
-    [SerializeField] private float movAcel = 3f;
-    [SerializeField] private float maxSpd = 2f;
+    private float movAcel = 3f;
+    private float maxSpd = 2f;
     [SerializeField] private float neckHSpd = 3f;
     [SerializeField] private float neckVSpd = 3f;
     [SerializeField] private float neckLen = 0.532f;
