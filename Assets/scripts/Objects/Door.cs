@@ -9,6 +9,7 @@ public class Door : MonoBehaviour, I_Interactable
     public bool open = false;
     public bool broken = false;
     public bool stuck = false;
+    public bool flipped = false;
 
     public AudioClip doorOpen_audio;
     public AudioClip doorClose_audio;
@@ -44,7 +45,7 @@ public class Door : MonoBehaviour, I_Interactable
         {
             // distance from the player to the knob
             float dis = Vector3.Distance(player.position, knob.position);
-            bool closeToKnob = dis <= interactDis;
+            bool closeToKnob = selfCollisionLine(player.position, player.Find("Camera").forward, interactDis);
 
             // Getting in wich side of the door the player is
             Vector3 toPlayer = transform.position - player.position;
@@ -60,6 +61,8 @@ public class Door : MonoBehaviour, I_Interactable
                 // opening door
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    bool open_ = flipped ? !open : open;
+
                     if (!stuck) Interact(!open);
                     else actionsPrompt.Show("A porta está emperrada!");
                 }
@@ -119,5 +122,17 @@ public class Door : MonoBehaviour, I_Interactable
     {
         List<string> tags = new List<string>{"", "Door"};
         return tags.Contains(tag);
+    }
+
+    // Collision line with yourself from 'pos', at 'dir' direction and 'dis' distance
+    private bool selfCollisionLine(Vector3 pos, Vector3 dir, float dis) {
+
+        RaycastHit ray;
+
+        if (Physics.Raycast(pos, dir, out ray, dis, 1<<6)) {
+            return ray.collider.gameObject == gameObject;
+        }
+
+        return false;
     }
 }
