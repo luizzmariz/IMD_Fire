@@ -63,7 +63,7 @@ public class Door : MonoBehaviour, I_Interactable
                 {
                     bool open_ = flipped ? !open : open;
 
-                    if (!stuck) Interact(!open);
+                    if (!stuck) Interact(!open_);
                     else actionsPrompt.Show("A porta está emperrada!");
                 }
 
