@@ -8,6 +8,9 @@ public class DoorText : MonoBehaviour
     TextMeshPro text;
     [SerializeField] string openText = "";
     [SerializeField] string closeText = "";
+
+    public bool flipped = false;
+
     private string currentText;
     private float initialZPos;
 
@@ -39,13 +42,15 @@ public class DoorText : MonoBehaviour
         text.text = near ? currentText : "";
 
         // changing displayed side
-        float yAng = transform.parent.transform.eulerAngles.y + (doorSide ? -180 : 0);
+        float yAng = transform.parent.transform.eulerAngles.y + (doorSide ? -180 : 0) + (flipped ? 180 : 0);
+        
         float zPos = initialZPos * (doorSide ? 1 : -1);
+
+        if (near) Debug.Log(doorSide);
 
         transform.localPosition = new Vector3 (
             transform.localPosition.x, transform.localPosition.y, zPos); // position
         
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, yAng, transform.eulerAngles.z); // angle
-
     }
 }

@@ -9,7 +9,6 @@ public class Door : MonoBehaviour, I_Interactable
     public bool open = false;
     public bool broken = false;
     public bool stuck = false;
-    public bool flipped = false;
 
     public AudioClip doorOpen_audio;
     public AudioClip doorClose_audio;
@@ -45,13 +44,18 @@ public class Door : MonoBehaviour, I_Interactable
         {
             // distance from the player to the knob
             float dis = Vector3.Distance(player.position, knob.position);
-            bool closeToKnob = selfCollisionLine(player.position, player.Find("Camera").forward, interactDis);
 
             // Getting in wich side of the door the player is
             Vector3 toPlayer = transform.position - player.position;
             Vector3 toKnob = transform.position - knob.position;
 
             float doorSide = Vector3.Dot(Vector3.Cross(toPlayer, toKnob).normalized, Vector3.up);
+
+            bool closeToKnob = selfCollisionLine(player.position, 
+            player.Find("Camera").forward, 
+            interactDis);
+
+            //if (closeToKnob) Debug.Log(player.position +  Quaternion.Euler(-30 * Mathf.Sign(doorSide), 0, 0) * player.Find("Camera").forward);
 
             textPrompt.Show(closeToKnob, doorSide < 0);
             
@@ -61,9 +65,7 @@ public class Door : MonoBehaviour, I_Interactable
                 // opening door
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    bool open_ = flipped ? !open : open;
-
-                    if (!stuck) Interact(!open_);
+                    if (!stuck) Interact(!open);
                     else actionsPrompt.Show("A porta está emperrada!");
                 }
 

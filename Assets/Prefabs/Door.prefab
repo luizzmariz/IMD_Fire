@@ -435,11 +435,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorSpd: 0.5
-  interactDis: 3
+  interactDis: 4
   open: 0
   broken: 0
   stuck: 0
-  flipped: 0
   doorOpen_audio: {fileID: 8300000, guid: 7037fb7fe0ebb804fb830d8927a97ad3, type: 3}
   doorClose_audio: {fileID: 8300000, guid: 9c4ce5947e4e57342951e7b826f700df, type: 3}
 --- !u!114 &3044237784942740436
