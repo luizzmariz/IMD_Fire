@@ -36,17 +36,20 @@ public class ContinuousMovement : MonoBehaviour
             Vector3 dirDown = Quaternion.Euler(45, y, 0) * (Vector3.forward);
             Vector3 dir = Quaternion.Euler(-45, y, 0) * (Vector3.forward);
 
-            bool collidingInteractable = Physics.Raycast(transform.position, dirDown.normalized,
-                walking_dis*1.1f, 1 << LayerMask.NameToLayer("Interactable"));
+            RaycastHit ray;
+
+            bool collidingInteractable = Physics.Raycast(transform.position, dirDown.normalized, out ray,
+                walking_dis*1.1f, 1 << LayerMask.NameToLayer("Interactable")) || ray.collider == null ? false : ray.collider.isTrigger;
 
             // Checking if the player is not colliding with interactable objects and walls
-
-            if (!collidingInteractable && !Physics.Raycast(transform.position, dir.normalized , walking_dis))
+            if (!collidingInteractable && !Physics.Raycast(transform.position, dir.normalized, walking_dis, 1<<0))
             {
                 rb.MovePosition(transform.position + (front * Input.GetAxis("Vertical") * moveSpd) 
                     + (right * Input.GetAxis("Horizontal") * moveSpd));
                 
                 GetComponent<Player>().updateStamina(-Time.deltaTime * (moveSpd/spd) * (moveSpd/spd));
+
+                Debug.Log("TASUKETE");
             }
         }
     }

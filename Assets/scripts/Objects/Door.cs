@@ -21,8 +21,10 @@ public class Door : MonoBehaviour, I_Interactable
     private AudioSource audioSource;
     private ActionsPrompt actionsPrompt;
 
+    protected string openAnimationName = "DoorOpen";
+
     // Start is called before the first frame update
-    void Start()
+    virtual public void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
@@ -37,8 +39,9 @@ public class Door : MonoBehaviour, I_Interactable
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+
         // Interactions
         if (!broken)
         {
@@ -54,8 +57,6 @@ public class Door : MonoBehaviour, I_Interactable
             bool closeToKnob = selfCollisionLine(player.position, 
             player.Find("Camera").forward, 
             interactDis);
-
-            //if (closeToKnob) Debug.Log(player.position +  Quaternion.Euler(-30 * Mathf.Sign(doorSide), 0, 0) * player.Find("Camera").forward);
 
             textPrompt.Show(closeToKnob, doorSide < 0);
             
@@ -90,7 +91,7 @@ public class Door : MonoBehaviour, I_Interactable
         if (open)
         {
             audioSource.PlayOneShot(doorOpen_audio);
-            anim.Play("DoorOpen");
+            anim.Play(openAnimationName);
         }
         else {
             audioSource.PlayOneShot(doorClose_audio);
@@ -98,7 +99,7 @@ public class Door : MonoBehaviour, I_Interactable
     }
 
     // Applies a force to the object
-    public void Kick(Vector3 dir, float strength = 1f)
+    virtual public void Kick(Vector3 dir, float strength = 1f)
     {
         // Making the door fall on the ground as a physics object
         if (!broken)

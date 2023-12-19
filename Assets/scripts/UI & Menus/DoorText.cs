@@ -46,8 +46,6 @@ public class DoorText : MonoBehaviour
         
         float zPos = initialZPos * (doorSide ? 1 : -1);
 
-        if (near) Debug.Log(doorSide);
-
         transform.localPosition = new Vector3 (
             transform.localPosition.x, transform.localPosition.y, zPos); // position
         
