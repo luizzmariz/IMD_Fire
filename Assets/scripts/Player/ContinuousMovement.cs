@@ -48,8 +48,6 @@ public class ContinuousMovement : MonoBehaviour
                     + (right * Input.GetAxis("Horizontal") * moveSpd));
                 
                 GetComponent<Player>().updateStamina(-Time.deltaTime * (moveSpd/spd) * (moveSpd/spd));
-
-                Debug.Log("TASUKETE");
             }
         }
     }
